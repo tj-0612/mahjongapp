@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		856706C81E5198F700DB2C99 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706C71E5198F700DB2C99 /* Player.swift */; };
+		856706CA1E51A5AC00DB2C99 /* NormalShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706C91E51A5AC00DB2C99 /* NormalShanten.swift */; };
+		856706CC1E51A5B400DB2C99 /* TitoiShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */; };
+		856706CE1E51A5BD00DB2C99 /* KokushiShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */; };
+		85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */; };
+		85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB201E516AA100B3C990 /* ViewController.swift */; };
+		85D4AB241E516AA100B3C990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D4AB221E516AA100B3C990 /* Main.storyboard */; };
+		85D4AB261E516AA100B3C990 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D4AB251E516AA100B3C990 /* Assets.xcassets */; };
+		85D4AB291E516AA100B3C990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D4AB271E516AA100B3C990 /* LaunchScreen.storyboard */; };
+		85D4AB341E516AA100B3C990 /* mahjongappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB331E516AA100B3C990 /* mahjongappTests.swift */; };
+		85D4AB3F1E516AA100B3C990 /* mahjongappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB3E1E516AA100B3C990 /* mahjongappUITests.swift */; };
+		85D4AB4D1E516F0300B3C990 /* Mahjong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB4C1E516F0300B3C990 /* Mahjong.swift */; };
+		85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB4E1E5181C600B3C990 /* Hand.swift */; };
+		85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB501E5182B900B3C990 /* Shanten.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85D4AB301E516AA100B3C990 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85D4AB131E516AA100B3C990 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85D4AB1A1E516AA100B3C990;
+			remoteInfo = mahjongapp;
+		};
+		85D4AB3B1E516AA100B3C990 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85D4AB131E516AA100B3C990 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85D4AB1A1E516AA100B3C990;
+			remoteInfo = mahjongapp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		856706C71E5198F700DB2C99 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		856706C91E51A5AC00DB2C99 /* NormalShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalShanten.swift; sourceTree = "<group>"; };
+		856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitoiShanten.swift; sourceTree = "<group>"; };
+		856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KokushiShanten.swift; sourceTree = "<group>"; };
+		85D4AB1B1E516AA100B3C990 /* mahjongapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mahjongapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85D4AB201E516AA100B3C990 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		85D4AB231E516AA100B3C990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		85D4AB251E516AA100B3C990 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85D4AB281E516AA100B3C990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85D4AB2A1E516AA100B3C990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85D4AB2F1E516AA100B3C990 /* mahjongappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mahjongappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D4AB331E516AA100B3C990 /* mahjongappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mahjongappTests.swift; sourceTree = "<group>"; };
+		85D4AB351E516AA100B3C990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85D4AB3A1E516AA100B3C990 /* mahjongappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mahjongappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D4AB3E1E516AA100B3C990 /* mahjongappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mahjongappUITests.swift; sourceTree = "<group>"; };
+		85D4AB401E516AA100B3C990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85D4AB4C1E516F0300B3C990 /* Mahjong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mahjong.swift; sourceTree = "<group>"; };
+		85D4AB4E1E5181C600B3C990 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		85D4AB501E5182B900B3C990 /* Shanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shanten.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85D4AB181E516AA100B3C990 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB2C1E516AA100B3C990 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB371E516AA100B3C990 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		85D4AB121E516AA100B3C990 = {
+			isa = PBXGroup;
+			children = (
+				85D4AB1D1E516AA100B3C990 /* mahjongapp */,
+				85D4AB321E516AA100B3C990 /* mahjongappTests */,
+				85D4AB3D1E516AA100B3C990 /* mahjongappUITests */,
+				85D4AB1C1E516AA100B3C990 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85D4AB1C1E516AA100B3C990 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85D4AB1B1E516AA100B3C990 /* mahjongapp.app */,
+				85D4AB2F1E516AA100B3C990 /* mahjongappTests.xctest */,
+				85D4AB3A1E516AA100B3C990 /* mahjongappUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85D4AB1D1E516AA100B3C990 /* mahjongapp */ = {
+			isa = PBXGroup;
+			children = (
+				85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */,
+				85D4AB4C1E516F0300B3C990 /* Mahjong.swift */,
+				856706C91E51A5AC00DB2C99 /* NormalShanten.swift */,
+				856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */,
+				856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */,
+				856706C71E5198F700DB2C99 /* Player.swift */,
+				85D4AB501E5182B900B3C990 /* Shanten.swift */,
+				85D4AB4E1E5181C600B3C990 /* Hand.swift */,
+				85D4AB201E516AA100B3C990 /* ViewController.swift */,
+				85D4AB221E516AA100B3C990 /* Main.storyboard */,
+				85D4AB251E516AA100B3C990 /* Assets.xcassets */,
+				85D4AB271E516AA100B3C990 /* LaunchScreen.storyboard */,
+				85D4AB2A1E516AA100B3C990 /* Info.plist */,
+			);
+			path = mahjongapp;
+			sourceTree = "<group>";
+		};
+		85D4AB321E516AA100B3C990 /* mahjongappTests */ = {
+			isa = PBXGroup;
+			children = (
+				85D4AB331E516AA100B3C990 /* mahjongappTests.swift */,
+				85D4AB351E516AA100B3C990 /* Info.plist */,
+			);
+			path = mahjongappTests;
+			sourceTree = "<group>";
+		};
+		85D4AB3D1E516AA100B3C990 /* mahjongappUITests */ = {
+			isa = PBXGroup;
+			children = (
+				85D4AB3E1E516AA100B3C990 /* mahjongappUITests.swift */,
+				85D4AB401E516AA100B3C990 /* Info.plist */,
+			);
+			path = mahjongappUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		85D4AB1A1E516AA100B3C990 /* mahjongapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85D4AB431E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongapp" */;
+			buildPhases = (
+				85D4AB171E516AA100B3C990 /* Sources */,
+				85D4AB181E516AA100B3C990 /* Frameworks */,
+				85D4AB191E516AA100B3C990 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mahjongapp;
+			productName = mahjongapp;
+			productReference = 85D4AB1B1E516AA100B3C990 /* mahjongapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		85D4AB2E1E516AA100B3C990 /* mahjongappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85D4AB461E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongappTests" */;
+			buildPhases = (
+				85D4AB2B1E516AA100B3C990 /* Sources */,
+				85D4AB2C1E516AA100B3C990 /* Frameworks */,
+				85D4AB2D1E516AA100B3C990 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85D4AB311E516AA100B3C990 /* PBXTargetDependency */,
+			);
+			name = mahjongappTests;
+			productName = mahjongappTests;
+			productReference = 85D4AB2F1E516AA100B3C990 /* mahjongappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		85D4AB391E516AA100B3C990 /* mahjongappUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85D4AB491E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongappUITests" */;
+			buildPhases = (
+				85D4AB361E516AA100B3C990 /* Sources */,
+				85D4AB371E516AA100B3C990 /* Frameworks */,
+				85D4AB381E516AA100B3C990 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85D4AB3C1E516AA100B3C990 /* PBXTargetDependency */,
+			);
+			name = mahjongappUITests;
+			productName = mahjongappUITests;
+			productReference = 85D4AB3A1E516AA100B3C990 /* mahjongappUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		85D4AB131E516AA100B3C990 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Takashi Tajimi";
+				TargetAttributes = {
+					85D4AB1A1E516AA100B3C990 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+					85D4AB2E1E516AA100B3C990 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 85D4AB1A1E516AA100B3C990;
+					};
+					85D4AB391E516AA100B3C990 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 85D4AB1A1E516AA100B3C990;
+					};
+				};
+			};
+			buildConfigurationList = 85D4AB161E516AA100B3C990 /* Build configuration list for PBXProject "mahjongapp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 85D4AB121E516AA100B3C990;
+			productRefGroup = 85D4AB1C1E516AA100B3C990 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				85D4AB1A1E516AA100B3C990 /* mahjongapp */,
+				85D4AB2E1E516AA100B3C990 /* mahjongappTests */,
+				85D4AB391E516AA100B3C990 /* mahjongappUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		85D4AB191E516AA100B3C990 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D4AB291E516AA100B3C990 /* LaunchScreen.storyboard in Resources */,
+				85D4AB261E516AA100B3C990 /* Assets.xcassets in Resources */,
+				85D4AB241E516AA100B3C990 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB2D1E516AA100B3C990 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB381E516AA100B3C990 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		85D4AB171E516AA100B3C990 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */,
+				85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */,
+				856706CE1E51A5BD00DB2C99 /* KokushiShanten.swift in Sources */,
+				85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */,
+				85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */,
+				856706CA1E51A5AC00DB2C99 /* NormalShanten.swift in Sources */,
+				856706C81E5198F700DB2C99 /* Player.swift in Sources */,
+				85D4AB4D1E516F0300B3C990 /* Mahjong.swift in Sources */,
+				856706CC1E51A5B400DB2C99 /* TitoiShanten.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB2B1E516AA100B3C990 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D4AB341E516AA100B3C990 /* mahjongappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D4AB361E516AA100B3C990 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D4AB3F1E516AA100B3C990 /* mahjongappUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85D4AB311E516AA100B3C990 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85D4AB1A1E516AA100B3C990 /* mahjongapp */;
+			targetProxy = 85D4AB301E516AA100B3C990 /* PBXContainerItemProxy */;
+		};
+		85D4AB3C1E516AA100B3C990 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85D4AB1A1E516AA100B3C990 /* mahjongapp */;
+			targetProxy = 85D4AB3B1E516AA100B3C990 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		85D4AB221E516AA100B3C990 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85D4AB231E516AA100B3C990 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		85D4AB271E516AA100B3C990 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85D4AB281E516AA100B3C990 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		85D4AB411E516AA100B3C990 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		85D4AB421E516AA100B3C990 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85D4AB441E516AA100B3C990 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = mahjongapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		85D4AB451E516AA100B3C990 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = mahjongapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		85D4AB471E516AA100B3C990 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = mahjongappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mahjongapp.app/mahjongapp";
+			};
+			name = Debug;
+		};
+		85D4AB481E516AA100B3C990 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = mahjongappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mahjongapp.app/mahjongapp";
+			};
+			name = Release;
+		};
+		85D4AB4A1E516AA100B3C990 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = mahjongappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = mahjongapp;
+			};
+			name = Debug;
+		};
+		85D4AB4B1E516AA100B3C990 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = mahjongappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = mahjongapp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		85D4AB161E516AA100B3C990 /* Build configuration list for PBXProject "mahjongapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D4AB411E516AA100B3C990 /* Debug */,
+				85D4AB421E516AA100B3C990 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85D4AB431E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D4AB441E516AA100B3C990 /* Debug */,
+				85D4AB451E516AA100B3C990 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85D4AB461E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D4AB471E516AA100B3C990 /* Debug */,
+				85D4AB481E516AA100B3C990 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85D4AB491E516AA100B3C990 /* Build configuration list for PBXNativeTarget "mahjongappUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D4AB4A1E516AA100B3C990 /* Debug */,
+				85D4AB4B1E516AA100B3C990 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 85D4AB131E516AA100B3C990 /* Project object */;
+}

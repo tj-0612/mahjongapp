@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		856706C81E5198F700DB2C99 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706C71E5198F700DB2C99 /* Player.swift */; };
-		856706CA1E51A5AC00DB2C99 /* NormalShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706C91E51A5AC00DB2C99 /* NormalShanten.swift */; };
-		856706CC1E51A5B400DB2C99 /* TitoiShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */; };
-		856706CE1E51A5BD00DB2C99 /* KokushiShanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */; };
+		856706D01E51B72900DB2C99 /* Agari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CF1E51B72900DB2C99 /* Agari.swift */; };
 		85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */; };
 		85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB201E516AA100B3C990 /* ViewController.swift */; };
 		85D4AB241E516AA100B3C990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D4AB221E516AA100B3C990 /* Main.storyboard */; };
@@ -42,9 +40,7 @@
 
 /* Begin PBXFileReference section */
 		856706C71E5198F700DB2C99 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		856706C91E51A5AC00DB2C99 /* NormalShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalShanten.swift; sourceTree = "<group>"; };
-		856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitoiShanten.swift; sourceTree = "<group>"; };
-		856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KokushiShanten.swift; sourceTree = "<group>"; };
+		856706CF1E51B72900DB2C99 /* Agari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agari.swift; sourceTree = "<group>"; };
 		85D4AB1B1E516AA100B3C990 /* mahjongapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mahjongapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D4AB201E516AA100B3C990 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,9 +109,7 @@
 			children = (
 				85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */,
 				85D4AB4C1E516F0300B3C990 /* Mahjong.swift */,
-				856706C91E51A5AC00DB2C99 /* NormalShanten.swift */,
-				856706CB1E51A5B400DB2C99 /* TitoiShanten.swift */,
-				856706CD1E51A5BD00DB2C99 /* KokushiShanten.swift */,
+				856706CF1E51B72900DB2C99 /* Agari.swift */,
 				856706C71E5198F700DB2C99 /* Player.swift */,
 				85D4AB501E5182B900B3C990 /* Shanten.swift */,
 				85D4AB4E1E5181C600B3C990 /* Hand.swift */,
@@ -282,13 +276,11 @@
 			files = (
 				85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */,
 				85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */,
-				856706CE1E51A5BD00DB2C99 /* KokushiShanten.swift in Sources */,
 				85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */,
 				85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */,
-				856706CA1E51A5AC00DB2C99 /* NormalShanten.swift in Sources */,
+				856706D01E51B72900DB2C99 /* Agari.swift in Sources */,
 				856706C81E5198F700DB2C99 /* Player.swift in Sources */,
 				85D4AB4D1E516F0300B3C990 /* Mahjong.swift in Sources */,
-				856706CC1E51A5B400DB2C99 /* TitoiShanten.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

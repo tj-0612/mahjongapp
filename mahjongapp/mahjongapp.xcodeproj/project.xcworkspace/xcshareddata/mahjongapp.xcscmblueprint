@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3F291F2F1DDF451C520BCA72A49E2785487393A4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3F291F2F1DDF451C520BCA72A49E2785487393A4" : 9223372036854775807,
+    "684A6D6380E34C4D33E54C699B92E2CA500E03DF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E0FE390C-2304-40CA-B9AD-27138C3EC469",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3F291F2F1DDF451C520BCA72A49E2785487393A4" : "mahjongapp\/",
+    "684A6D6380E34C4D33E54C699B92E2CA500E03DF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "mahjongapp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "mahjongapp\/mahjongapp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:tj-0612\/mahjongapp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3F291F2F1DDF451C520BCA72A49E2785487393A4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tj-0612\/calc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "684A6D6380E34C4D33E54C699B92E2CA500E03DF"
+    }
+  ]
+}

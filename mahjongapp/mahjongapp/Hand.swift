@@ -32,7 +32,7 @@ public enum Mentukind{
 }
 public struct Pai{
     let rank: Int
-    let suit: Int //-1:debug 0:m 1:p 2:s 3:z
+    let suit: Int //-1:初期化用 0:m 1:p 2:s 3:z
     init(rank:Int, suit:Int){
         self.rank=rank;
         self.suit=suit;
@@ -76,7 +76,7 @@ struct Mentu{
 public class Hand{
     private var pai = Array(repeating: Pai(rank:-1,suit:-1),count: 13);
     private var naki = Array<Mentu>();
-    //private var shanten : Shanten = Shanten();
+    private var shanten : Shanten = Shanten();
     private var sutehai = Array<Pai>();
     
     init(){
@@ -84,6 +84,7 @@ public class Hand{
 
     public func tsumo(pai:Pai){
         self.pai.append(pai);
+        
     }
     
     public func kiru(index:Int){

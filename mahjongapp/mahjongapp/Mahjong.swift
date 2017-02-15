@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Yaku{
+enum Yaku_enum{
     case YAKU_TON
     case YAKU_NAN
     case YAKU_SHA

@@ -84,7 +84,7 @@ public class Shanten{
                 }
             }
         }
-        tempshanten=8-mentu*2-tatsu-toitu;
+        tempshanten=8-mentu*2-tatsu-toitu-naki.count*2;
         if(normalshanten>tempshanten){
             normalshanten=tempshanten
         }
@@ -136,9 +136,13 @@ public class Shanten{
         }
     }
     public func calcTitoiShanten(){
+        titoishanten=6;
         var temphand = maketemphand()
         var kind=0
-        
+        if(naki.isEmpty==false){
+            titoishanten=14;
+            return
+        }
         for i in 0...3{
             for j in 0...8{
                 if(temphand[i][j]>0){

@@ -64,7 +64,7 @@ public struct Pai{
         }
     }
 }
-struct Mentu{
+public struct Mentu{
     let kind:Int
     let pai: Pai
     init(kind:Int,pai:Pai){
@@ -76,12 +76,25 @@ struct Mentu{
 public class Hand{
     private var pai = Array(repeating: Pai(rank:-1,suit:-1),count: 13);
     private var naki = Array<Mentu>();
-    private var shanten : Shanten = Shanten();
+    private var shanten : Shanten
     private var sutehai = Array<Pai>();
     
     init(){
+        self.shanten=Shanten(hand: pai, naki: naki)
     }
 
+    public func getnaki()->[Mentu]{
+        return naki
+    }
+    public func getForm()->Int{
+        return shanten.getForm()
+    }
+    
+    public func gethand()->[Pai]{
+        
+    }
+    
+    
     public func tsumo(pai:Pai){
         self.pai.append(pai);
         

@@ -16,6 +16,11 @@ public class Player{
     
     init(id:Int){
         self.id = id;
+        
+    }
+    
+    public func play(select:Int){
+        
     }
     
     public func tsumo(pai:Pai){

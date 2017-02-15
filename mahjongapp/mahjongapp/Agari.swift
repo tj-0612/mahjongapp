@@ -16,15 +16,24 @@ struct Yaku{
 public class Agari{
     private var point=0;
     private var hand:Hand;
+    private var agarihai:Pai
+    private var ron:Bool
     private var yaku = Array<Yaku>();
     private var dora = 0;
+    private var mentu=Array<Mentu>()
     
-    init(hand:Hand){
+    init(hand:Hand,agarihai:Pai,ron:Bool){
         self.hand=hand
-        
+        self.agarihai=agarihai
+        self.ron=ron
     }
     
     private func addYaku(name:String ,han:Int){
+        
+    }
+    
+    public func separateMentu(){
+        mentu = hand.getnaki()
         
     }
     
@@ -85,7 +94,7 @@ public class Agari{
                     }
                 }else{
                     if(tanyao()==true){
-                        addYaku(name: "タンヤオ", han: <#T##Int#>)
+                        addYaku(name: "タンヤオ", han: 1)
                     }
                 }
             }
@@ -161,7 +170,7 @@ public class Agari{
     private func chinitsu()->Bool{
         
     }
-    private func dora()->Bool{
+    private func setdora()->Bool{
     }
     
     

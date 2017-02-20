@@ -88,12 +88,14 @@ enum Yaku_enum{
         private var countkan=0;
         private var yamanokori:Int;
         private var dora = Array<Pai>();
+        private var junme:Int
         
         init(){
             self.yamaInit()
         }
         public func yamaInit(){
             self.yamanokori = 136
+            self.junme=0
             var painum = Array(repeating: 4,count:34)
             for i in 0 ... 135{
                 var rand:Int;
@@ -116,6 +118,7 @@ enum Yaku_enum{
             self.yama.remove(at:0);
             yamanokori -= 1;
             player[id].tsumo(pai: temp);
+            junme+=1
         }
         
         public func gameMain(){
@@ -123,7 +126,7 @@ enum Yaku_enum{
             yamaInit()
             haipai()
             
-            while(agari==true){
+            while(agari==false){
                 tsumo(id: i)
             }
         }

@@ -7,9 +7,10 @@
 //
 
 import Foundation
-public enum Mentukind{
+public enum Mentukind:Int{
     case ANKO
     case MINKO
+    case PON
     case SHUNTU
     case CHII
     case ANKAN
@@ -20,7 +21,8 @@ public enum Mentukind{
     var naki: Bool{
         switch self{
         case .ANKO: return false;
-        case .MINKO: return true;
+        case .MINKO: return false;
+        case .PON:  return true;
         case .SHUNTU: return false;
         case .CHII: return true;
         case .ANKAN: return false;
@@ -49,7 +51,16 @@ public struct Pai{
         }else{
             return -1;
         }
+        
     }
+    public func judgekazuhai()->Bool{
+        return (suit < 3)
+    }
+    
+    public func judgejihai()->Bool{
+        return !(judgekazuhai())
+    }
+    
     public static func getPairank(painum:Int)->Int{
         if(0 <= painum && painum <= 8){
             return painum+1;
@@ -65,11 +76,54 @@ public struct Pai{
     }
 }
 public struct Mentu{
-    let kind:Int
+    let kind:Mentukind
     let pai: Pai
-    init(kind:Int,pai:Pai){
+    init(kind:Mentukind,pai:Pai){
         self.kind=kind;
         self.pai=pai;
+    }
+    public func returnnaki()->Bool{
+        return kind.naki
+    }
+    public func judgeKoutu()->Bool{
+        if(kind==Mentukind.ANKO || kind==Mentukind.PON || kind==Mentukind.MINKO || kind==Mentukind.ANKAN || kind==Mentukind.MINKAN || kind==Mentukind.KAKAN){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    public func judgeShuntu()->Bool{
+        if(kind==Mentukind.SHUNTU || kind==Mentukind.CHII){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    public func judgeKantu()->Bool{
+        if(kind==Mentukind.ANKAN || kind==Mentukind.MINKAN || kind==Mentukind.KAKAN){
+            return true
+        }else{
+            return false
+        }
+    }
+}
+public struct st_Richi{
+    var flag:Bool
+    var junme:Int
+    var furiten=Array<Pai>()
+    var ippatsu:Bool
+    
+    init(){
+        self.flag=false
+        self.junme = -1
+        self.ippatsu=false
+    }
+    public mutating func doRichi(junme:Int){
+        self.flag=true;
+        self.junme=junme
+        self.ippatsu=true;
     }
 }
 
@@ -78,11 +132,22 @@ public class Hand{
     private var naki = Array<Mentu>();
     private var shanten : Shanten
     private var sutehai = Array<Pai>();
+    private var richi = st_Richi()
     
+    public func returnnaki()->Bool{
+        for temp in naki{
+            if(temp.returnnaki()==true){
+                return true
+            }
+        }
+        return false
+    }
     init(){
         self.shanten=Shanten(hand: pai, naki: naki)
     }
-
+    public func getrichi()->st_Richi{
+        return richi
+    }
     public func getnaki()->[Mentu]{
         return naki
     }
@@ -90,8 +155,8 @@ public class Hand{
         return shanten.getForm()
     }
     
-    public func gethand()->[Pai]{
-        
+    public func getpai()->[Pai]{
+        return pai
     }
     
     

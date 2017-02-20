@@ -13,8 +13,8 @@ public class Shanten{
     private var naki=Array<Mentu>();
     private var shanten=8;
     private var normalshanten=8;
-    private var titoishanten:Int;
-    private var kokushishanten:Int;
+    private var titoishanten=6;
+    private var kokushishanten=13;
     private var Machi=Array<Pai>()
     
     
@@ -38,9 +38,16 @@ public class Shanten{
     init(hand:[Pai],naki:[Mentu]){
         self.hand=hand;
         self.naki=naki;
-        self.calcNormalShanten()
-        self.calcTitoiShanten()
-        self.calcKokushiShanten()
+        self.shanten=8
+        self.normalshanten=8
+        self.titoishanten=6
+        self.kokushishanten=13
+        self.mentu=0
+        self.toitu=0
+        self.tatsu=0
+        calcNormalShanten()
+        calcTitoiShanten()
+        calcKokushiShanten()
     }
     
     private func maketemphand()->[[Int]]{

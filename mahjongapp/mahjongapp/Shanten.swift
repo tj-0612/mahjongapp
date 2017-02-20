@@ -177,9 +177,33 @@ public class Shanten{
         }
     }
     public func calcKokushiShanten(){
-        
+        var temp = 13
+        var toitu = false
+        var temphand=maketemphand()
+        for i in 0...3{
+            for j in 0...8{
+                if(i <= 2){
+                    if(j==1 || j==9){
+                        if(temphand[i][j]>=1){
+                            temp -= 1
+                        }else if(temphand[i][j]>=2 && !toitu){
+                            toitu=true
+                        }
+                    }
+                }
+                else if(i==3){
+                    if(temphand[i][j]>=1){
+                        temp -= 1
+                    }else if(temphand[i][j]>=2 && !toitu){
+                        toitu=true
+                    }
+                }
+            }
+        }
+        temp -= toitu ? 1 : 0
+        kokushishanten=temp
     }
-    
+    //待ちの計算
     private func setMachi(){
         
     }

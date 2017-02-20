@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		853416661E5ADB770066A77A /* manzu2_1 in Resources */ = {isa = PBXBuildFile; fileRef = 853416621E5ADB770066A77A /* manzu2_1 */; };
+		853416671E5ADB770066A77A /* manzu2_2 in Resources */ = {isa = PBXBuildFile; fileRef = 853416631E5ADB770066A77A /* manzu2_2 */; };
+		853416681E5ADB770066A77A /* manzu2_3 in Resources */ = {isa = PBXBuildFile; fileRef = 853416641E5ADB770066A77A /* manzu2_3 */; };
+		853416691E5ADB770066A77A /* manzu2_4 in Resources */ = {isa = PBXBuildFile; fileRef = 853416651E5ADB770066A77A /* manzu2_4 */; };
 		856706C81E5198F700DB2C99 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706C71E5198F700DB2C99 /* Player.swift */; };
 		856706D01E51B72900DB2C99 /* Agari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856706CF1E51B72900DB2C99 /* Agari.swift */; };
 		85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		853416621E5ADB770066A77A /* manzu2_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = manzu2_1; path = ../../../Downloads/manzu2_1; sourceTree = "<group>"; };
+		853416631E5ADB770066A77A /* manzu2_2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = manzu2_2; path = ../../../Downloads/manzu2_2; sourceTree = "<group>"; };
+		853416641E5ADB770066A77A /* manzu2_3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = manzu2_3; path = ../../../Downloads/manzu2_3; sourceTree = "<group>"; };
+		853416651E5ADB770066A77A /* manzu2_4 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = manzu2_4; path = ../../../Downloads/manzu2_4; sourceTree = "<group>"; };
 		856706C71E5198F700DB2C99 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		856706CF1E51B72900DB2C99 /* Agari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agari.swift; sourceTree = "<group>"; };
 		85D4AB1B1E516AA100B3C990 /* mahjongapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mahjongapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +99,10 @@
 				85D4AB321E516AA100B3C990 /* mahjongappTests */,
 				85D4AB3D1E516AA100B3C990 /* mahjongappUITests */,
 				85D4AB1C1E516AA100B3C990 /* Products */,
+				853416621E5ADB770066A77A /* manzu2_1 */,
+				853416631E5ADB770066A77A /* manzu2_2 */,
+				853416641E5ADB770066A77A /* manzu2_3 */,
+				853416651E5ADB770066A77A /* manzu2_4 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,7 +259,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853416671E5ADB770066A77A /* manzu2_2 in Resources */,
+				853416681E5ADB770066A77A /* manzu2_3 in Resources */,
 				85D4AB291E516AA100B3C990 /* LaunchScreen.storyboard in Resources */,
+				853416691E5ADB770066A77A /* manzu2_4 in Resources */,
+				853416661E5ADB770066A77A /* manzu2_1 in Resources */,
 				85D4AB261E516AA100B3C990 /* Assets.xcassets in Resources */,
 				85D4AB241E516AA100B3C990 /* Main.storyboard in Resources */,
 			);

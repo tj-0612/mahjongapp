@@ -60,6 +60,12 @@ public struct Pai{
     public func judgejihai()->Bool{
         return !(judgekazuhai())
     }
+    public static func paiEqual(p1:Pai,p2:Pai)->Bool{
+        if(p1.rank==p2.rank && p1.suit==p2.suit){
+            return true
+        }
+        return false
+    }
     
     public static func getPairank(painum:Int)->Int{
         if(0 <= painum && painum <= 8){
@@ -78,10 +84,18 @@ public struct Pai{
 public struct Mentu{
     let kind:Mentukind
     let pai: Pai
+    let naki: Pai
     init(kind:Mentukind,pai:Pai){
         self.kind=kind;
         self.pai=pai;
+        self.naki=Pai(rank: -1,suit: -1)
     }
+    init(kind:Mentukind,pai:Pai,naki:Pai){
+        self.kind=kind;
+        self.pai=pai;
+        self.naki=naki
+    }
+    
     public func returnnaki()->Bool{
         return kind.naki
     }

@@ -18,8 +18,13 @@ public class Player{
         self.id = id;
         
     }
-    
+    public func naki(){
+        
+    }
     public func play(select:Int){
+        
+    }
+    public func autoPlay(){
         
     }
     

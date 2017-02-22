@@ -15,7 +15,7 @@ public class Shanten{
     private var normalshanten=8;
     private var titoishanten=6;
     private var kokushishanten=13;
-    private var Machi=Array<Pai>()
+    private var machi=Array<Pai>()
     
     
     private var mentu=0
@@ -24,7 +24,7 @@ public class Shanten{
     
     //最もシャンテン数の小さい上がり形式を返す(一般形:0七対子形:1国士無双形:2
     public func getForm()->Int{
-        if(normalshanten<titoishanten && normalshanten<kokushishanten){
+        if(normalshanten<=titoishanten && normalshanten<kokushishanten){
             return 0
         }else if(titoishanten<kokushishanten){
             return 1
@@ -49,6 +49,9 @@ public class Shanten{
         calcNormalShanten()
         calcTitoiShanten()
         calcKokushiShanten()
+        if(getShanten()==0){
+            setMachi()
+        }
     }
     
     private func maketemphand()->[[Int]]{
@@ -176,21 +179,26 @@ public class Shanten{
             titoishanten+=7-kind;
         }
     }
+    //国士無双のシャンテン数の計算
     public func calcKokushiShanten(){
-        var temp = 13
+        var temp = 13 //シャンテン数
         var toitu = false
         var temphand=maketemphand()
         for i in 0...3{
             for j in 0...8{
+                //数牌
                 if(i <= 2){
                     if(j==1 || j==9){
                         if(temphand[i][j]>=1){
+                            //ヤオチュー牌があれば
                             temp -= 1
                         }else if(temphand[i][j]>=2 && !toitu){
+                            //2枚使いのものがあれば
                             toitu=true
                         }
                     }
                 }
+                //字牌
                 else if(i==3){
                     if(temphand[i][j]>=1){
                         temp -= 1
@@ -200,11 +208,93 @@ public class Shanten{
                 }
             }
         }
+        //２枚使いのものがあればシャンテン数を１減らす
         temp -= toitu ? 1 : 0
         kokushishanten=temp
     }
-    //待ちの計算
-    private func setMachi(){
+    
+    private func normalMachi(){
+        var temphand=maketemphand()
         
+        for i in 0...3{
+            for j in 1...9{
+                if(temphand[i][j-2]>=1 || temphand[i][j-1]>=1 || temphand[i][j]>=1){
+                    hand.append(Pai(rank: j,suit: i))
+                    let temp = normalshanten
+                    calcNormalShanten()
+                    if(normalshanten == -1){
+                        machi.append(Pai(rank: j,suit: i))
+                    }
+                    normalshanten=temp
+                    hand.remove(at: hand.count - 1)
+                }
+            }
+        }
+    }
+    private func titoiMachi(){
+        var temphand = maketemphand()
+        for i in 0...3{
+            for j in 0...8{
+                //無い物があればそれを待ちにしてreturn
+                if(temphand[i][j-1]==1){
+                    machi.append(Pai(rank: j+1,suit: i))
+                    return
+                }
+            }
+        }
+    }
+    
+    private func kokushiMachi(){
+        var toitu=false
+        var temphand=maketemphand()
+        for i in 0...3{
+            for j in 0...8{
+                //数牌
+                if(i <= 2){
+                    if(j==1 || j==9){
+                        //無い物があればそれを待ちにしてreturn
+                        if(temphand[i][j]==0){
+                            machi.append(Pai(rank: j+1, suit: i))
+                            return
+                        }
+                        if(temphand[i][j]>=2 && !toitu){
+                            //2枚使いのものがあれば
+                            toitu=true
+                        }
+                    }
+                }
+                //字牌
+                else if(i==3){
+                    if(temphand[i][j]==0){
+                        machi.append(Pai(rank: j+1, suit: i))
+                        return
+                    }
+                    if(temphand[i][j]>=2 && !toitu){
+                        toitu=true
+                    }
+                }
+            }
+        }
+        //２枚使いがない->13面待ち
+        if(!toitu){
+            for i in 0...2{
+                machi.append(Pai(rank: 1,suit: i))
+                machi.append(Pai(rank: 9,suit: i))
+            }
+            for i in 1...7{
+                machi.append(Pai(rank: i,suit: 3))
+            }
+        }
+    }
+    
+    //待ちの計算(有効牌の計算アルゴリズムを流用予定)
+    //テンパイしている時に呼び出される前提のアルゴリズムなのでテンパイしていない時の有効牌は計算できない
+    private func setMachi(){
+        switch getForm(){
+        case 0: normalMachi()
+        case 1: titoiMachi()
+        case 2: kokushiMachi()
+        default: break
+        }
     }
 }

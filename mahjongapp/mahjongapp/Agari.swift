@@ -16,6 +16,10 @@ struct Yaku{
         self.name=name
         self.han=han
     }
+    
+    public func printYaku_debug(){
+        print(name + " " + String(han))
+    }
 }
 
 
@@ -32,6 +36,13 @@ public class Agari{
     private var yaku = Array<Yaku>();
     private var dora = 0;
     private var mentu=Array<Mentu>()
+    
+    //符計算用変数
+    private var fu=0
+    private var ispinfu=false
+    
+    private var oya=false
+    private var hurikomiplayer=-1
     
     init(hand:Hand,agarihai:Pai,ron:Bool,bahuu:Int,jihuu:Int,junme:Int,chankan:Bool, rinshan:Bool){
         self.hand=hand
@@ -59,6 +70,7 @@ public class Agari{
         return temphand
         
     }
+    private func calcpoint()->
     
     //手牌のメンツ分解（頭を切り出す
     private func separateMentu(){
@@ -78,6 +90,78 @@ public class Agari{
         }
         
     }
+    
+    private func calcFu(){
+        var tempfu=0
+        //平和
+        if(ispinfu){
+            if(ron){
+                tempfu=30
+            }else{
+                tempfu=20
+            }
+            if(fu < tempfu){
+                fu = tempfu
+            }
+            return
+        }
+        tempfu=20 //副底20
+        //面前ロン10
+        if(hand.isMenzen() && ron){
+            tempfu += 10
+        }
+        //ツモ2
+        if(!ron){
+            tempfu += 2
+        }
+        //手牌構成
+        for m in mentu{
+            //頭
+            if(m.kind == Mentukind.TOITU){
+                //単騎待ち2
+                if(Pai.paiEqual(p1:m.pai, p2:agarihai)){
+                    tempfu += 2
+                }
+                //役牌の頭2 連風牌4
+                if(m.pai.judgejihai()){
+                    tempfu += m.pai.rank==jihuu ? 2 : 0
+                    tempfu += m.pai.rank==bahuu ? 2 : 0
+                    tempfu += m.pai.rank>=5 ? 2 : 0
+                }
+            }
+            //シュンツの待ち
+            else if(m.judgeShuntu()){
+                if( (Pai.paiEqual(p1: m.pai, p2: agarihai) && m.pai.rank==7) || //7ペンチャン 2
+                    (Pai.paiEqual(p1: m.pai, p2: Pai(rank: agarihai.rank-2, suit: agarihai.suit)) && m.pai.rank==1) || //3ペンチャン 2
+                    (Pai.paiEqual(p1: m.pai, p2: Pai(rank: agarihai.rank-1, suit: agarihai.suit))) || //カンチャン 2
+                    (Pai.paiEqual(p1: m.pai, p2: Pai(rank: agarihai.rank+1, suit: agarihai.suit)))){ //カンチャン 2
+                        tempfu+=2
+                }
+            }
+            //刻子
+            else{
+                //暗刻 8or4
+                if(m.kind==Mentukind.ANKO){
+                    tempfu += m.pai.judgeyaochu() ? 8 : 4
+                }else if(m.kind==Mentukind.MINKO || m.kind==Mentukind.PON){ //明刻 4or2
+                    tempfu += m.pai.judgeyaochu() ? 4 : 2
+                }else if(m.kind==Mentukind.ANKAN){ //アンカン 32or16
+                    tempfu += m.pai.judgeyaochu() ? 32 : 16
+                }else if(m.kind==Mentukind.KAKAN || m.kind==Mentukind.MINKAN){ //ミンカン 16or8
+                    tempfu += m.pai.judgeyaochu() ? 16 : 8
+                }
+            }
+        }
+        //鳴き平和系 30符
+        if(tempfu==20){
+            tempfu=30
+        }
+        //切り上げ
+        tempfu += (tempfu%10 > 0) ? (10-(tempfu%10)) : 0
+        if(fu<tempfu){
+            fu=tempfu
+        }
+    }
     //手牌のメンツ分解（メンツを切り出す
     //全て切り出したら役を数えて得点計算に移り、最大得点となるメンツを選ぶ
     private func calcMentu(hand:[[Int]]){
@@ -87,6 +171,7 @@ public class Agari{
         if(mentu.count==5 && self.hand.getForm()==0){
             judgeYaku()
             //未実装
+            
         }
         //メンツを切り出す
         for i in 0...3 {
@@ -141,7 +226,7 @@ public class Agari{
                 chinitsu()
             }
             else{//一般形
-                if(hand.returnnaki()==false){
+                if(hand.isMenzen()==true){
                     if(richi()==true){
                         ippatsu()
                     }
@@ -156,7 +241,7 @@ public class Agari{
                     haiteiron()
                 }
                 rinshankaiho()
-                chankan()
+                chankan_yaku()
                 yakuhai()
                 tanyao()
                 toitoi()
@@ -242,6 +327,7 @@ public class Agari{
         }
         if(ryanmen==true){
             addYaku(name: "平和", han: 1)
+            ispinfu=true //符計算用
             return true
         }
         return false
@@ -288,7 +374,7 @@ public class Agari{
         return false
     }
     private func ipeko()->Bool{
-        if(hand.returnnaki()){
+        if(hand.isMenzen()==false){
             return false
         }
         for temp in mentu{
@@ -317,7 +403,7 @@ public class Agari{
         }
         return false
     }
-    private func chankan()->Bool{
+    private func chankan_yaku()->Bool{
         if(chankan){
             addYaku(name: "槍槓", han: 1)
             return true
@@ -355,7 +441,7 @@ public class Agari{
             }
             if(manzu && pinzu && sozu){
                 var han=2
-                if(hand.returnnaki()){
+                if(hand.isMenzen()==false){
                     han=1
                 }
                 addYaku(name: "三色同順", han: han)
@@ -384,7 +470,7 @@ public class Agari{
             }
             if(flag1&&flag2&&flag3){
                 var han=2
-                if(hand.returnnaki()){
+                if(hand.isMenzen()==false){
                     han=1
                 }
                 addYaku(name: "一気通貫", han: han)
@@ -435,7 +521,7 @@ public class Agari{
         }
         if(jihai==true && shuntu==true){
             var han=2
-            if(hand.returnnaki()==true){
+            if(!hand.isMenzen()==true){
                 han=1
             }
             addYaku(name: "チャンタ", han: han)
@@ -491,7 +577,7 @@ public class Agari{
         }
         if(jihai){
             var han = 3
-            if(hand.returnnaki()){
+            if(!hand.isMenzen()){
                 han=2
             }
             addYaku(name: "混一色", han: han)
@@ -515,7 +601,7 @@ public class Agari{
         }
         if(jihai==false && shuntu==true){
             var han=3
-            if(hand.returnnaki()==true){
+            if(!hand.isMenzen()==true){
                 han=2
             }
             addYaku(name: "ジュンチャン", han: han)
@@ -602,7 +688,7 @@ public class Agari{
             }
         }
         var han = 6
-        if(hand.returnnaki()){
+        if(!hand.isMenzen()){
             han=5
         }
         addYaku(name: "清一色", han: han)
@@ -748,7 +834,7 @@ public class Agari{
         return true
     }
     private func churenpoto()->Bool{
-        if(hand.returnnaki()==false){
+        if(!hand.isMenzen()==false){
             return false
         }
 

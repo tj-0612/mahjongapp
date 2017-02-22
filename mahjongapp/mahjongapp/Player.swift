@@ -12,17 +12,31 @@ public class Player{
     private var point = 25000;
     private var hand = Hand();
     private var id:Int;
+    //buttonの出現の管理
+    private var pon=false
+    private var chi=false
+    private var kan=false
+    private var ron=false
+    private var tsumo=false
+    private var richi=false
     
-    
+    public func getHand()->Hand{
+        return hand
+    }
     init(id:Int){
         self.id = id;
         
     }
-    public func naki(){
+    //鳴かない0 チー1 ポン2 カン3
+    public func selectNaki(nakihai: Pai, id: Int)->Int{
+        return 0;
         
     }
-    public func play(select:Int){
-        
+    public func dorichi(junme: Int){
+        hand.dorichi(junme: junme)
+    }
+    public func play(select:Int)->Bool{
+        return false
     }
     public func autoPlay(){
         

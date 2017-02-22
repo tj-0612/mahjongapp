@@ -53,7 +53,7 @@ public class Shanten{
             setMachi()
         }
     }
-    
+    //枚数を数える
     private func maketemphand()->[[Int]]{
         var temphand:[[Int]]=Array(repeating: Array(repeating:0 ,count: 9), count: 4)
         
@@ -213,6 +213,7 @@ public class Shanten{
         kokushishanten=temp
     }
     
+    //多分、５枚目の待ちを含んでしまう
     private func normalMachi(){
         var temphand=maketemphand()
         

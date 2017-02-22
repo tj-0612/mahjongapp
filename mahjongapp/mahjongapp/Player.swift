@@ -32,12 +32,15 @@ public class Player{
         return 0;
         
     }
+    //リーチの実行
     public func dorichi(junme: Int){
         hand.dorichi(junme: junme)
     }
+    //打牌、鳴き、上がり、リーチ
     public func play(select:Int)->Bool{
         return false
     }
+    //COMプレイヤーの打牌など
     public func autoPlay(){
         
     }

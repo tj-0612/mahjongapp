@@ -42,7 +42,7 @@ public class Agari{
     private var ispinfu=false
     
     private var oya=false
-    private var hurikomiplayer=-1
+    private var hurikomiplayer = -1
     
     init(hand:Hand,agarihai:Pai,ron:Bool,bahuu:Int,jihuu:Int,junme:Int,chankan:Bool, rinshan:Bool){
         self.hand=hand
@@ -70,8 +70,10 @@ public class Agari{
         return temphand
         
     }
+    //符と役から得点計算、誰がいくら減点されて誰がいくら加点されるかの管理方法を考え中
     private func calcpoint()->
     
+    //七対子、国士に対して未対応
     //手牌のメンツ分解（頭を切り出す
     private func separateMentu(){
         var temphand = maketemphand()
@@ -270,6 +272,7 @@ public class Agari{
         return false
     }
     
+//余裕があれば食い下がり用の関数を用意した方が見やすい（別になくてもいいし面倒）
     private func yakuhai()->Bool{
         var han:Int=0;
         for temp in mentu{
@@ -358,9 +361,11 @@ public class Agari{
     private func tanyao()->Bool{
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
-                if(temp.pai.rank==1 || temp.pai.rank==9 || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
+                if(temp.pai.judgeyaochu() || (temp.pai.rank==7&&temp.judgeShuntu())){
                     return false
                 }
+            }else{
+                return false
             }
         }
         addYaku(name: "タンヤオ", han: 1)
@@ -510,7 +515,7 @@ public class Agari{
         var shuntu=false
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
-                if !(temp.pai.rank==1 || temp.pai.rank==9 || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
+                if !(temp.pai.judgeyaochu() || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
                     return false
                 }else if(temp.judgeShuntu()==true){
                     shuntu=true
@@ -519,6 +524,7 @@ public class Agari{
                 jihai=true
             }
         }
+        //ホンロー、ジュンチャンと被らないように
         if(jihai==true && shuntu==true){
             var han=2
             if(!hand.isMenzen()==true){
@@ -586,20 +592,19 @@ public class Agari{
         return false
     }
     private func junchan()->Bool{
-        var jihai=false
         var shuntu=false
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
-                if !(temp.pai.rank==1 || temp.pai.rank==9 || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
+                if !(temp.pai.judgeyaochu() || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
                     return false
                 }else if(temp.judgeShuntu()==true){
                     shuntu=true
                 }
             }else{
-                jihai=true
+                return false
             }
         }
-        if(jihai==false && shuntu==true){
+        if(shuntu==true){
             var han=3
             if(!hand.isMenzen()==true){
                 han=2
@@ -654,19 +659,17 @@ public class Agari{
     }
     private func honroto()->Bool{
         var jihai=false
-        var shuntu=false
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
-                if !(temp.pai.rank==1 || temp.pai.rank==9 || (temp.pai.rank==7&&temp.judgeShuntu()==true)){
+                if !(temp.pai.judgeyaochu() && temp.judgeKoutu()){
                     return false
-                }else if(temp.judgeShuntu()==true){
-                    shuntu=true
                 }
             }else{
                 jihai=true
             }
         }
-        if(jihai==true && shuntu==false){
+        //チンローは回避されるはずだけど一応
+        if(jihai==true){
             addYaku(name: "混老頭", han: 2)
             return true
         }else{
@@ -770,6 +773,7 @@ public class Agari{
         }
         return false
     }
+    //junmeの実装次第で変わる
     private func chihou()->Bool{
         if(junme==jihuu){
             addYaku(name: "地和", han: 13)
@@ -806,7 +810,7 @@ public class Agari{
     }
     private func chinroto()->Bool{
         for temp in mentu{
-            if !(temp.pai.judgekazuhai() && temp.pai.rank==1 && temp.pai.rank==9 && (temp.judgeKoutu() || temp.kind==Mentukind.TOITU)){
+            if !(temp.pai.judgekazuhai() && temp.pai.judgeyaochu() && (temp.judgeKoutu() || temp.kind==Mentukind.TOITU)){
                 return false
             }
         }

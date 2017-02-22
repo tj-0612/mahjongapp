@@ -110,6 +110,7 @@ class Mahjong{
     }
     
     //自分vsCOM3人を想定
+    //リーチボタンが押された後の処理 -> 要検討
     //ボタンプッシュから次のボタンプッシュ待ちまでの処理を行う (もしかしたらgamescreenに書いた方が画面遷移が楽かも
     public func play(index: Int){
         var nakihai:Pai

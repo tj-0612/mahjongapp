@@ -75,6 +75,8 @@ class gamescreen: UIViewController {
     @IBOutlet weak var ButtonHand12: UIButton!
     @IBOutlet weak var ButtonHand13: UIButton!
     
+    
+    //ダブルタップで実行するようにした方がいいかも
     @IBAction func tappedHand1(_ sender: Any) {
         m.play(index: 1)
     }

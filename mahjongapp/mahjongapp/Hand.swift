@@ -56,6 +56,7 @@ public struct Pai{
         }
         
     }
+    //ヤオチュー牌の判定
     public func judgeyaochu()->Bool{
         if(suit<3){
             if(rank==1 || rank==9){

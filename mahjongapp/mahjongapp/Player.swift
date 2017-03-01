@@ -37,7 +37,16 @@ public class Player{
         hand.dorichi(junme: junme)
     }
     //打牌、鳴き、上がり、リーチ
+    //返り値は打牌や鳴きなどが行えるかどうか
     public func play(select:Int)->Bool{
+        if(hand.getpai().count<select && select<15){
+            return false
+        }
+        if(select<15){
+            hand.kiru(index: select)
+            gamescreen.h=hand
+            gamescreen.sutehai[0]=hand.getsutehai()
+        }
         return false
     }
     //COMプレイヤーの打牌など

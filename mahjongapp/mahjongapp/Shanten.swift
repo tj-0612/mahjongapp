@@ -58,7 +58,9 @@ public class Shanten{
         var temphand:[[Int]]=Array(repeating: Array(repeating:0 ,count: 9), count: 4)
         
         for pai in hand{
-            temphand[pai.suit][pai.rank]+=1;
+            if(pai.suit != -1 && pai.rank != -1){
+                temphand[pai.suit][pai.rank]+=1;
+            }
         }
         return temphand
 

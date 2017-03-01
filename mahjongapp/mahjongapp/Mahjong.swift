@@ -15,13 +15,16 @@ class Mahjong{
     private var oya = 0
     private var player = [Player(id: 0),Player(id:1),Player(id:2),Player(id:3)];
     private var countkan=0;
-    private var yamanokori:Int;
+    private var yamanokori=136
     private var dora = Array<Pai>();
-    private var junme:Int
+    private var junme=0
     
     private var renchancount=0
     private var kyotaku=0 //供託
     
+    public func getplayer(id:Int)->Player{
+        return player[id]
+    }
     private var nakikind=[0,0,0,0]
     
     init(){
@@ -56,10 +59,16 @@ class Mahjong{
         var painum = Array(repeating: 4,count:34)
         for i in 0 ... 135{
             var rand:Int;
-            repeat {
+            while(true){
+                print("a")
                 rand=(Int)(arc4random_uniform(34));
-            }while(painum[rand] != 0)
-            self.yama[i]=Pai(rank: Pai.getPairank(painum: rand), suit:Pai.getPaisuit(painum: rand));
+                if(painum[rand]>0){
+                    painum[rand] -= 1
+                    self.yama[i]=Pai(rank: Pai.getPairank(painum: rand), suit:Pai.getPaisuit(painum: rand));
+                    break;
+                }
+            }
+            print("set " + String(i))
         }
         dora.append(yama[135-10]);
     }
@@ -70,6 +79,11 @@ class Mahjong{
                 tsumo(id:i);
             }
         }
+        for p in player{
+            p.getHand().sort()
+        }
+        tsumo(id: 0)
+        gamescreen.h=player[0].getHand()
     }
     public func tsumo(id:Int){
         let temp = self.yama[0];
@@ -80,6 +94,7 @@ class Mahjong{
     }
     
     //ゲーム進行(未実装)
+    /*
     public func gameMain(){
         var i=0
         var agari=false
@@ -94,6 +109,8 @@ class Mahjong{
             
         }
     }
+ */
+    //ポンチーカンの優先順位管理
     private func manageNaki(nakihai:Pai)->Int{
         for i in 1...3{
             nakikind[i]=player[i].selectNaki(nakihai: nakihai,id: 0)
@@ -105,30 +122,33 @@ class Mahjong{
         if(nakikind[1]==1){
             return 2
         }else{
-            
+            return 1
         }
     }
     
     //自分vsCOM3人を想定
     //リーチボタンが押された後の処理 -> 要検討
     //ボタンプッシュから次のボタンプッシュ待ちまでの処理を行う (もしかしたらgamescreenに書いた方が画面遷移が楽かも
-    public func play(index: Int){
+    public func play(index: Int)->Bool{
         var nakihai:Pai
         var next=0;
         //上がりなら（playで上がり、打牌、鳴きの全ての処理を行う）
-        if(player[0].play(select: index)){
+        if(player[0].play(select: index-1)){
             //上がり処理（未実装）
-            return
+            return true
         }
         //適当に書いただけ
+        /*
         nakihai=player[0].getHand().getsutehai()[player[0].getHand().getsutehai().count-1]
         next=manageNaki(nakihai: nakihai)
         while(next<4){
-            nakihai=player[next].autoPlay()
+            //nakihai = player[next].autoPlay()
             next=manageNaki(nakihai: nakihai)
-        }
+        }*/
         
-        
+        tsumo(id: 0)
+        gamescreen.h=player[0].getHand()
+        return true
     }
 
 }

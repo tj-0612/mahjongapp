@@ -56,6 +56,12 @@ public struct Pai{
         }
         
     }
+    public func isnull()->Bool{
+        if(suit == -1 && rank == -1){
+            return true
+        }
+        return false
+    }
     //ヤオチュー牌の判定
     public func judgeyaochu()->Bool{
         if(suit<3){
@@ -166,7 +172,7 @@ public struct st_Richi{
 }
 
 public class Hand{
-    private var pai = Array(repeating: Pai(rank:-1,suit:-1),count: 13);
+    private var pai = Array<Pai>();
     private var naki = Array<Mentu>();
     private var shanten : Shanten
     private var sutehai = Array<Pai>();
@@ -202,7 +208,7 @@ public class Hand{
     public func getsutehai()->[Pai]{
         return sutehai
     }
-    public func addsutehai(sutehai: Pai)->{
+    public func addsutehai(sutehai: Pai){
         self.sutehai.append(sutehai)
     }
     
@@ -210,10 +216,13 @@ public class Hand{
         self.pai.append(pai);
         
     }
-    
+    public func sort(){
+        pai.sort{ $0.suit != $1.suit ? $0.suit<$1.suit : $0.rank<$1.rank}
+    }
     public func kiru(index:Int){
         sutehai.append(pai[index]);
         pai.remove(at: index);
+        sort()
     }
 }
 

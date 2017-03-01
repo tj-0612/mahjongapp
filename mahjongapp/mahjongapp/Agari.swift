@@ -22,6 +22,24 @@ struct Yaku{
     }
 }
 
+public struct Point{
+    public var id:Int
+    public var payment=[0,0,0,0]
+    public var get:Int
+    
+    init(id:Int, payment:Array<Int>){
+        if(payment[id] != 0){
+            print("payment error")
+            self.id = -1
+            self.payment=[-1,-1,-1,-1]
+            self.get = -1
+            return
+        }
+        self.id=id
+        self.payment=payment
+        get=payment[0]+payment[1]+payment[2]+payment[3]
+    }
+}
 
 public class Agari{
     private var bahuu:Int
@@ -53,7 +71,7 @@ public class Agari{
         self.junme=junme
         self.chankan=chankan
         self.rinshan=rinshan
-        separateMentu()
+        self.separateMentu()
     }
     //役を追加する
     private func addYaku(name:String ,han:Int){
@@ -70,8 +88,17 @@ public class Agari{
         return temphand
         
     }
-    //符と役から得点計算、誰がいくら減点されて誰がいくら加点されるかの管理方法を考え中
-    private func calcpoint()->
+    //符と役から得点計算、誰がいくら減点されて誰がいくら加点されるかの管理方法を考え中 -> structを作る
+    private func calcpoint()->Int{
+        let rontable=[[0,0   ,1000,1300,1600,2000,2300,2600,2900,3200,3600],
+                      [0,1600,2000,2600,3200.3900,4500,5200,5800,6400,7100],
+                      [0,3200,3900,5200,6400,7700,8000,8000,8000,8000,8000],
+                      [0,6400,7700,8000,8000,8000,8000,8000,8000,8000,8000]]
+        if(ron){
+            
+        }
+        return 0
+    }
     
     //七対子、国士に対して未対応
     //手牌のメンツ分解（頭を切り出す
@@ -263,7 +290,7 @@ public class Agari{
         }
         
     }
-    
+    @discardableResult
     private func titoitsu()->Bool{
         if(hand.getForm()==1){
             addYaku(name: "七対子", han: 2)
@@ -273,6 +300,7 @@ public class Agari{
     }
     
 //余裕があれば食い下がり用の関数を用意した方が見やすい（別になくてもいいし面倒）
+    @discardableResult
     private func yakuhai()->Bool{
         var han:Int=0;
         for temp in mentu{
@@ -309,6 +337,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func pinfu()->Bool{
         var ryanmen=false
         for temp in mentu{
@@ -335,6 +364,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func rinshankaiho()->Bool{
         if(rinshan){
             addYaku(name: "嶺上開花", han: 1)
@@ -342,6 +372,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func richi()->Bool{
         if(hand.getrichi().flag==true){
             addYaku(name: "リーチ", han: 1)
@@ -350,6 +381,7 @@ public class Agari{
             return false
         }
     }
+    @discardableResult
     private func tsumo()->Bool{
         if(ron==false){
             addYaku(name: "ツモ", han: 1)
@@ -358,6 +390,7 @@ public class Agari{
             return false
         }
     }
+    @discardableResult
     private func tanyao()->Bool{
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
@@ -371,6 +404,7 @@ public class Agari{
         addYaku(name: "タンヤオ", han: 1)
         return true
     }
+    @discardableResult
     private func ippatsu()->Bool{
         if(hand.getrichi().ippatsu==true){
             addYaku(name: "一発", han: 1)
@@ -378,6 +412,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func ipeko()->Bool{
         if(hand.isMenzen()==false){
             return false
@@ -394,6 +429,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func haiteitsumo()->Bool{
         if(junme==136 && !ron){
             addYaku(name: "海底摸月", han: 1)
@@ -401,6 +437,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func haiteiron()->Bool{
         if(junme==136 && ron){
             addYaku(name: "河底撈魚", han: 1)
@@ -408,6 +445,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func chankan_yaku()->Bool{
         if(chankan){
             addYaku(name: "槍槓", han: 1)
@@ -415,6 +453,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func toitoi()->Bool{
         for temp in mentu{
             if(temp.judgeShuntu()){
@@ -424,6 +463,7 @@ public class Agari{
         addYaku(name: "対々和", han: 2)
         return true
     }
+    @discardableResult
     private func sanshokudoujun()->Bool{
         var manzu=false
         var pinzu=false
@@ -455,6 +495,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func ittsu()->Bool{
         var flag1=false
         var flag2=false
@@ -484,6 +525,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func sananko()->Bool{
         var count=0
         for temp in mentu{
@@ -497,6 +539,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func sankantsu()->Bool{
         var count=0;
         for temp in hand.getnaki(){
@@ -510,6 +553,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func chanta()->Bool{
         var jihai=false
         var shuntu=false
@@ -536,6 +580,7 @@ public class Agari{
             return false
         }
     }
+    @discardableResult
     private func sanshokudoko()->Bool{
         var manzu=false
         var pinzu=false
@@ -563,9 +608,11 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func doublerichi()->Bool{
-        
+        return false
     }
+    @discardableResult
     private func honitsu()->Bool{
         var jihai=false
         var suit = -1
@@ -591,6 +638,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func junchan()->Bool{
         var shuntu=false
         for temp in mentu{
@@ -615,6 +663,7 @@ public class Agari{
             return false
         }
     }
+    @discardableResult
     private func ryanpeko()->Bool{
         var count=0
         var index = -1
@@ -636,6 +685,7 @@ public class Agari{
         }
         return false
     }
+    @discardableResult
     private func shosangen()->Bool{
         var count=0
         var toitu=false
@@ -657,6 +707,7 @@ public class Agari{
         }
         return false;
     }
+    @discardableResult
     private func honroto()->Bool{
         var jihai=false
         for temp in mentu{
@@ -676,6 +727,7 @@ public class Agari{
             return false
         }
     }
+    @discardableResult
     private func chinitsu()->Bool{
         var suit = -1
         for i in 0...mentu.count{
@@ -697,7 +749,9 @@ public class Agari{
         addYaku(name: "清一色", han: han)
         return true
     }
+    @discardableResult
     private func setdora()->Bool{
+        return false
     }
     
     private func judgeYakuman()->Bool{

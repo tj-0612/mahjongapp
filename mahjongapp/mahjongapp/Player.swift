@@ -32,6 +32,15 @@ public class Player{
         return 0;
         
     }
+    public func doPon(nakihai:Pai){
+        hand.addnaki(pai: nakihai, nakihai: nakihai, kind: Mentukind.PON)
+    }
+    public func doChi(pai: Pai, nakihai: Pai){
+        hand.addnaki(pai: pai, nakihai: nakihai, kind: Mentukind.CHII)
+    }
+    public func doKan(nakihai:Pai){
+        hand.addnaki(pai: nakihai, nakihai: nakihai, kind: Mentukind.MINKAN)
+    }
     //リーチの実行
     public func dorichi(junme: Int){
         hand.dorichi(junme: junme)
@@ -39,13 +48,19 @@ public class Player{
     //打牌、鳴き、上がり、リーチ
     //返り値は打牌や鳴きなどが行えるかどうか
     public func play(select:Int)->Bool{
+        if(select==19){
+            if(hand.getshanten().getShanten() == -1){
+                return true
+            }
+        }
         if(hand.getpai().count<select && select<15){
+            print("not hand")
             return false
         }
         if(select<15){
             hand.kiru(index: select)
-            gamescreen.h=hand
-            gamescreen.sutehai[0]=hand.getsutehai()
+            //gamescreen.h=hand
+            //gamescreen.sutehai[0]=hand.getsutehai()
         }
         return false
     }

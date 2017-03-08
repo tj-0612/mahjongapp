@@ -6,6 +6,7 @@
 //  Copyright © 2017年 Takashi Tajimi. All rights reserved.
 //
 
+//今後の予定　上がり画面を作る
 import Foundation
 
 public class Shanten{
@@ -33,7 +34,7 @@ public class Shanten{
         }
     }
     public func getShanten()->Int{
-        return min(normalshanten, titoishanten, kokushishanten)
+        return shanten
     }
     
     init(hand:[Pai],naki:[Mentu]){
@@ -46,12 +47,18 @@ public class Shanten{
         self.mentu=0
         self.toitu=0
         self.tatsu=0
-        calcNormalShanten()
-        calcTitoiShanten()
-        calcKokushiShanten()
+        maincalcShanten()
         if(getShanten()==0){
             setMachi()
         }
+    }
+    public func maincalcShanten(){
+        calcNormalShanten()
+        calcTitoiShanten()
+        calcKokushiShanten()
+        print("shanten n"+String(normalshanten)+"t"+String(titoishanten)+"k"+String(kokushishanten))
+        
+        shanten=min(normalshanten, titoishanten, kokushishanten)
     }
     //枚数を数える
     private func maketemphand()->[[Int]]{
@@ -59,46 +66,63 @@ public class Shanten{
         
         for pai in hand{
             if(pai.suit != -1 && pai.rank != -1){
-                temphand[pai.suit][pai.rank]+=1;
+                temphand[pai.suit][pai.rank-1]+=1;
             }
         }
         return temphand
 
     }
+    //どこかにバグがある->　多分解消、要検証
     //ターツを切り出す
-    private func tatsucut(hand:[[Int]]){
+    private func tatsucut(hand:[[Int]],suit:Int,rank:Int){
         var temphand=hand
         var tempshanten=8
-        for i in 0...3{
-            for j in 0 ... 8{
-                //対子
-                if(temphand[i][j]>=2){
-                    tatsu+=1
-                    temphand[i][j]-=2
-                    tatsucut(hand:temphand)
-                    temphand[i][j]+=2
-                    tatsu-=1
+        var j=0
+        for i in suit ... 3{
+            if(i==suit && j<rank){
+                j=rank
+            }else{
+                j=0
+            }
+            while(j<=8){
+                if(i==suit && j<rank){
+                    j=rank
                 }
-                //順子（リャンメンまたはペンチャン
-                if(temphand[i][j]>0 && temphand[i][j+1]>0 && i<3 && j<8){
-                    tatsu+=1
-                    temphand[i][j]-=1
-                    temphand[i][j+1]-=1
-                    tatsucut(hand:temphand)
-                    temphand[i][j]+=1
-                    temphand[i][j+1]+=1
-                    tatsu-=1
+                if(mentu+tatsu<4){
+                    //対子
+                    if(temphand[i][j]>=2){
+                        tatsu+=1
+                        temphand[i][j]-=2
+                        tatsucut(hand:temphand,suit:i,rank:j)
+                        temphand[i][j]+=2
+                        tatsu-=1
+                    }
+                    //順子（リャンメンまたはペンチャン
+                    if(j<8){
+                        if(temphand[i][j]>0 && temphand[i][j+1]>0 && i<3){
+                            tatsu+=1
+                            temphand[i][j]-=1
+                            temphand[i][j+1]-=1
+                            tatsucut(hand:temphand,suit:i,rank:j)
+                            temphand[i][j]+=1
+                            temphand[i][j+1]+=1
+                            tatsu-=1
+                        }
+                    }
+                    //順子（カンチャン
+                    if(j<7){
+                        if(temphand[i][j]>0 && temphand[i][j+2]>0 && i<3){
+                            tatsu+=1
+                            temphand[i][j]-=1
+                            temphand[i][j+2]-=1
+                            tatsucut(hand:temphand,suit:i,rank:j)
+                            temphand[i][j]+=1
+                            temphand[i][j+2]+=1
+                            tatsu-=1
+                        }
+                    }
                 }
-                //順子（カンチャン
-                if(temphand[i][j]>0&&temphand[i][j+2]>0 && i<3 && j<6){
-                    tatsu+=1
-                    temphand[i][j]-=1
-                    temphand[i][j+2]-=1
-                    tatsucut(hand:temphand)
-                    temphand[i][j]+=1
-                    temphand[i][j+2]+=1
-                    tatsu-=1
-                }
+                j+=1
             }
         }
         tempshanten=8-mentu*2-tatsu-toitu-naki.count*2;
@@ -107,33 +131,42 @@ public class Shanten{
         }
     }
     //メンツを切り出す
-    private func mentucut(hand:[[Int]]){
+    private func mentucut(hand:[[Int]],suit:Int,rank:Int){
         var temphand=hand
-        for i in 0 ... 3{
-            for j in 0 ... 8{
+        var j=0
+        for i in suit ... 3{
+            if(i==suit && j<rank){
+                j=rank
+            }else{
+                j=0
+            }
+            while(j<=8){
                 //刻子
                 if(temphand[i][j]>=3){
                     mentu+=1
                     temphand[i][j]-=3
-                    mentucut(hand:temphand)
+                    mentucut(hand:temphand,suit:i,rank:j)
                     temphand[i][j]+=3
                     mentu-=1
                 }
                 //順子
-                if(temphand[i][j]>0 && temphand[i][j+1]>0 && temphand[i][j+2]>0 && i<3){
-                    mentu+=1
-                    temphand[i][j]-=1
-                    temphand[i][j+1]-=1
-                    temphand[i][j+2]-=1
-                    mentucut(hand:temphand)
-                    temphand[i][j]+=1
-                    temphand[i][j+1]+=1
-                    temphand[i][j+2]+=1
-                    mentu-=1
+                if(j<7){
+                    if(temphand[i][j]>0 && temphand[i][j+1]>0 && temphand[i][j+2]>0 && i<3){
+                        mentu+=1
+                        temphand[i][j]-=1
+                        temphand[i][j+1]-=1
+                        temphand[i][j+2]-=1
+                        mentucut(hand:temphand,suit:i,rank:j)
+                        temphand[i][j]+=1
+                        temphand[i][j+1]+=1
+                        temphand[i][j+2]+=1
+                        mentu-=1
+                    }
                 }
+                j+=1
             }
         }
-        tatsucut(hand:temphand)
+        tatsucut(hand:temphand,suit:0,rank:0)
     }
     //一般形のシャンテン数を計算するときはこの関数を呼び出す
     public func calcNormalShanten(){
@@ -142,18 +175,19 @@ public class Shanten{
         tatsu=0;
         var temphand = maketemphand()
         normalshanten=8
-        for i in 0 ... 3{
+        for i in 0...3{
             for j in 0...8{
                 //頭の切り出し
                 if(temphand[i][j]>=2){
                     toitu+=1
                     temphand[i][j]-=2;
-                    mentucut(hand:temphand)
+                    mentucut(hand:temphand,suit:0,rank:0)
                     temphand[i][j]+=2
                     toitu-=1
                 }
             }
         }
+        mentucut(hand:temphand,suit:0,rank:0)
     }
     //七対子形のシャンテン数の計算
     public func calcTitoiShanten(){
@@ -186,6 +220,10 @@ public class Shanten{
         var temp = 13 //シャンテン数
         var toitu = false
         var temphand=maketemphand()
+        if(naki.isEmpty==false){
+            kokushishanten=14;
+            return
+        }
         for i in 0...3{
             for j in 0...8{
                 //数牌
@@ -220,13 +258,13 @@ public class Shanten{
         var temphand=maketemphand()
         
         for i in 0...3{
-            for j in 1...9{
-                if(temphand[i][j-2]>=1 || temphand[i][j-1]>=1 || temphand[i][j]>=1){
-                    hand.append(Pai(rank: j,suit: i))
+            for j in 0...8{
+                if(temphand[i][j-2>=0 ? j-2 : 0]>=1 || temphand[i][j-1>=0 ? j-1 : 0]>=1 || temphand[i][j]>=1){
+                    hand.append(Pai(rank: j+1,suit: i))
                     let temp = normalshanten
                     calcNormalShanten()
                     if(normalshanten == -1){
-                        machi.append(Pai(rank: j,suit: i))
+                        machi.append(Pai(rank: j+1,suit: i))
                     }
                     normalshanten=temp
                     hand.remove(at: hand.count - 1)
@@ -239,7 +277,7 @@ public class Shanten{
         for i in 0...3{
             for j in 0...8{
                 //無い物があればそれを待ちにしてreturn
-                if(temphand[i][j-1]==1){
+                if(temphand[i][j]==1){
                     machi.append(Pai(rank: j+1,suit: i))
                     return
                 }
@@ -254,7 +292,7 @@ public class Shanten{
             for j in 0...8{
                 //数牌
                 if(i <= 2){
-                    if(j==1 || j==9){
+                    if(j==0 || j==8){
                         //無い物があればそれを待ちにしてreturn
                         if(temphand[i][j]==0){
                             machi.append(Pai(rank: j+1, suit: i))

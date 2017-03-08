@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85031AD01E6FD32200E0CC0D /* gamedebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85031ACF1E6FD32200E0CC0D /* gamedebug.swift */; };
 		85453A921E5D5E0D00EAC9E2 /* gamescreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85453A911E5D5E0D00EAC9E2 /* gamescreen.swift */; };
 		856002CC1E66AA2B007399FE /* p_ms1_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 856002351E66AA2B007399FE /* p_ms1_1.gif */; };
 		856002CD1E66AA2B007399FE /* p_ms2_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 856002361E66AA2B007399FE /* p_ms2_1.gif */; };
@@ -177,6 +178,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		85031ACF1E6FD32200E0CC0D /* gamedebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gamedebug.swift; sourceTree = "<group>"; };
 		85453A911E5D5E0D00EAC9E2 /* gamescreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = gamescreen.swift; path = ../gamescreen.swift; sourceTree = "<group>"; };
 		856002351E66AA2B007399FE /* p_ms1_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = p_ms1_1.gif; sourceTree = "<group>"; };
 		856002361E66AA2B007399FE /* p_ms2_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = p_ms2_1.gif; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				85D4AB1E1E516AA100B3C990 /* AppDelegate.swift */,
 				85D4AB4C1E516F0300B3C990 /* Mahjong.swift */,
 				85453A911E5D5E0D00EAC9E2 /* gamescreen.swift */,
+				85031ACF1E6FD32200E0CC0D /* gamedebug.swift */,
 				856706CF1E51B72900DB2C99 /* Agari.swift */,
 				856706C71E5198F700DB2C99 /* Player.swift */,
 				85D4AB501E5182B900B3C990 /* Shanten.swift */,
@@ -955,6 +958,7 @@
 			files = (
 				85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */,
 				85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */,
+				85031AD01E6FD32200E0CC0D /* gamedebug.swift in Sources */,
 				85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */,
 				85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */,
 				856706D01E51B72900DB2C99 /* Agari.swift in Sources */,

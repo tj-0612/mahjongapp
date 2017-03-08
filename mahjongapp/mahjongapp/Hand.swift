@@ -189,6 +189,12 @@ public class Hand{
     init(){
         self.shanten=Shanten(hand: pai, naki: naki)
     }
+    public func addnaki(pai:Pai, nakihai:Pai, kind:Mentukind){
+        naki.append(Mentu(kind: kind, pai: pai, naki: nakihai))
+    }
+    public func getshanten()->Shanten{
+        return shanten
+    }
     public func dorichi(junme: Int){
         richi.doRichi(junme: junme)
     }
@@ -214,6 +220,11 @@ public class Hand{
     
     public func tsumo(pai:Pai){
         self.pai.append(pai);
+        print("tsumo"+String(pai.rank) + String(pai.suit))
+        setShanten()
+        if(self.pai.count>14){
+            print("hand>14")
+        }
         
     }
     public func sort(){
@@ -221,8 +232,13 @@ public class Hand{
     }
     public func kiru(index:Int){
         sutehai.append(pai[index]);
+        print(String(pai[index].rank) + String(pai[index].suit))
         pai.remove(at: index);
         sort()
+        setShanten()
+    }
+    public func setShanten(){
+        shanten=Shanten(hand:pai,naki:naki)
     }
 }
 

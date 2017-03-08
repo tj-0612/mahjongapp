@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+//Mahjongクラスの中身を全部gamescreenに移せば楽になるかも->写したのでこのファイルはいらない（一応最後まで残す）
 class Mahjong{
     private var yama = Array(repeating: Pai(rank: -1,suit: -1),count:136);
     private var bahuu = 1;
@@ -83,7 +83,7 @@ class Mahjong{
             p.getHand().sort()
         }
         tsumo(id: 0)
-        gamescreen.h=player[0].getHand()
+        //gamescreen.h=player[0].getHand()
     }
     public func tsumo(id:Int){
         let temp = self.yama[0];
@@ -147,7 +147,7 @@ class Mahjong{
         }*/
         
         tsumo(id: 0)
-        gamescreen.h=player[0].getHand()
+        //gamescreen.h=player[0].getHand()
         return true
     }
 

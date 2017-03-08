@@ -30,10 +30,6 @@ public struct Point{
     init(id:Int, payment:Array<Int>){
         if(payment[id] != 0){
             print("payment error")
-            self.id = -1
-            self.payment=[-1,-1,-1,-1]
-            self.get = -1
-            return
         }
         self.id=id
         self.payment=payment
@@ -41,19 +37,27 @@ public struct Point{
     }
 }
 
+infix operator ^^
+func ^^ (radix: Int, power: Int) -> Int {
+    return Int(pow(Double(radix), Double(power)))
+}
+
 public class Agari{
     private var bahuu:Int
     private var jihuu:Int
-    private var point=0;
+    private var point=Point(id:0,payment:[0,0,0,0]);
     private var junme = -1;
+    private var han=0
     private var hand:Hand;
     private var agarihai:Pai
     private var ron:Bool
     private var chankan:Bool
     private var rinshan:Bool
     private var yaku = Array<Yaku>();
+    private var tempyaku = Array<Yaku>();
     private var dora = 0;
     private var mentu=Array<Mentu>()
+    private var id:Int
     
     //符計算用変数
     private var fu=0
@@ -62,7 +66,8 @@ public class Agari{
     private var oya=false
     private var hurikomiplayer = -1
     
-    init(hand:Hand,agarihai:Pai,ron:Bool,bahuu:Int,jihuu:Int,junme:Int,chankan:Bool, rinshan:Bool){
+    init(id:Int,hand:Hand,agarihai:Pai,ron:Bool,bahuu:Int,jihuu:Int,junme:Int,chankan:Bool, rinshan:Bool){
+        self.id=id
         self.hand=hand
         self.agarihai=agarihai
         self.ron=ron
@@ -75,7 +80,7 @@ public class Agari{
     }
     //役を追加する
     private func addYaku(name:String ,han:Int){
-        yaku.append(Yaku(name:name, han:han))
+        tempyaku.append(Yaku(name:name, han:han))
     }
     
     //手牌の各牌の枚数を数えて配列にする
@@ -83,23 +88,79 @@ public class Agari{
         var temphand:[[Int]]=Array(repeating: Array(repeating:0 ,count: 9), count: 4)
         
         for pai in hand.getpai(){
-            temphand[pai.suit][pai.rank]+=1;
+            temphand[pai.suit][pai.rank-1]+=1;
         }
         return temphand
         
     }
     //符と役から得点計算、誰がいくら減点されて誰がいくら加点されるかの管理方法を考え中 -> structを作る
-    private func calcpoint()->Int{
-        let rontable=[[0,0   ,1000,1300,1600,2000,2300,2600,2900,3200,3600],
-                      [0,1600,2000,2600,3200.3900,4500,5200,5800,6400,7100],
-                      [0,3200,3900,5200,6400,7700,8000,8000,8000,8000,8000],
-                      [0,6400,7700,8000,8000,8000,8000,8000,8000,8000,8000]]
-        if(ron){
-            
+    //tableは作らない方針
+    private func calcpoint()->Point{
+        var basepoint:Int //基本点（子のツモ時の子が支払う点数）
+        var han=0
+        for y in yaku{
+            han += y.han
         }
-        return 0
+        if han>=5 {
+            switch(han){
+            case 5: basepoint=2000
+            case 6: fallthrough
+            case 7: basepoint=3000
+            case 8: fallthrough
+            case 9: fallthrough
+            case 10: basepoint=4000
+            case 11: fallthrough
+            case 12: basepoint=6000
+            default: basepoint=8000*Int(han/13)
+            }
+        }else{
+            basepoint=fu * (2^^(han+2))
+            if(basepoint>2000){
+                basepoint=2000
+            }
+        }
+        var pay=[0,0,0,0]
+        if ron {
+            pay[hurikomiplayer] = oya ? basepoint*6 : basepoint*4
+        }else{
+            let oyaplayer = jihuu==1 ? id : (5-jihuu+id)%4
+            if(oyaplayer==id){
+                for i in 0...3{
+                    if(i==id){
+                        pay[i]=0
+                    }else{
+                        pay[i]=(basepoint*2)%100>0 ? (basepoint*2)+100-(basepoint*2)%100 : (basepoint*2)
+                    }
+                }
+            }else{
+                for i in 0...3{
+                    if(i==id){
+                        pay[i]=0
+                    }else{
+                        if(i==oyaplayer){
+                            pay[i]=(basepoint*2)%100>0 ? (basepoint*2)+100-(basepoint*2)%100 : (basepoint*2)
+                        }else{
+                            pay[i]=(basepoint)%100>0 ? (basepoint)+100-(basepoint)%100 : (basepoint)
+                        }
+                    }
+                }
+            }
+        }
+        let p=Point(id: id,payment: pay)
+        return p
     }
     
+    public func printagari(){
+        print(String(fu)+"符")
+        for y in yaku{
+            y.printYaku_debug()
+        }
+        print("計"+String(han)+"役")
+        for p in point.payment{
+            print(String(p)+",")
+        }
+        print(String(point.get))
+    }
     //七対子、国士に対して未対応
     //手牌のメンツ分解（頭を切り出す
     private func separateMentu(){
@@ -110,7 +171,7 @@ public class Agari{
             for j in 0...8{
                 if(temphand[i][j]>=2){
                     temphand[i][j]-=2;
-                    mentu.insert(Mentu(kind: Mentukind.TOITU, pai: Pai(rank: j, suit: i)),at:0)
+                    mentu.insert(Mentu(kind: Mentukind.TOITU, pai: Pai(rank: j+1, suit: i)),at:0)
                     calcMentu(hand:temphand)
                     mentu.remove(at: 0)
                     temphand[i][j]+=2
@@ -195,11 +256,27 @@ public class Agari{
     //全て切り出したら役を数えて得点計算に移り、最大得点となるメンツを選ぶ
     private func calcMentu(hand:[[Int]]){
         var temphand=hand
-        
+        var temppoint:Point
+        var temphan=0
         //分解完了
         if(mentu.count==5 && self.hand.getForm()==0){
             judgeYaku()
-            //未実装
+            for y in tempyaku{
+                temphan+=y.han
+            }
+            if(temphan>=han){
+                if(temphan>han){
+                    yaku=tempyaku
+                    han=temphan
+                    fu=0
+                }
+                calcFu()
+                temppoint=calcpoint()
+                if(temppoint.get>point.get){
+                    point=temppoint
+                }
+            }
+            return
             
         }
         //メンツを切り出す
@@ -209,25 +286,27 @@ public class Agari{
                 if(temphand[i][j]>=3){
                     temphand[i][j]-=3;
                     if(ron==true){
-                        mentu.insert(Mentu(kind: Mentukind.MINKO,pai: Pai(rank: j,suit: i)), at: 0)
+                        mentu.insert(Mentu(kind: Mentukind.MINKO,pai: Pai(rank: j+1,suit: i)), at: 0)
                     }else{
-                        mentu.insert(Mentu(kind: Mentukind.ANKO,pai: Pai(rank: j,suit: i)), at: 0)
+                        mentu.insert(Mentu(kind: Mentukind.ANKO,pai: Pai(rank: j+1,suit: i)), at: 0)
                     }
                     calcMentu(hand: temphand)
                     mentu.remove(at: 0)
                     temphand[i][j]+=3
                 }
                 //順子
-                if(temphand[i][j]>=1 && temphand[i][j+1]>=1 && temphand[i][j+2]>=1 && i<3 && j<7){
-                    temphand[i][j]-=1;
-                    temphand[i][j+1]-=1;
-                    temphand[i][j+2]-=1;
-                    mentu.insert(Mentu(kind: Mentukind.SHUNTU, pai: Pai(rank: j, suit: i)), at: 0)
-                    calcMentu(hand: temphand)
-                    mentu.remove(at: 0)
-                    temphand[i][j]+=1;
-                    temphand[i][j+1]+=1;
-                    temphand[i][j+2]+=1;
+                if(j<7 && i<3){
+                    if(temphand[i][j]>=1 && temphand[i][j+1]>=1 && temphand[i][j+2]>=1){
+                        temphand[i][j]-=1;
+                        temphand[i][j+1]-=1;
+                        temphand[i][j+2]-=1;
+                        mentu.insert(Mentu(kind: Mentukind.SHUNTU, pai: Pai(rank: j+1, suit: i)), at: 0)
+                        calcMentu(hand: temphand)
+                        mentu.remove(at: 0)
+                        temphand[i][j]+=1;
+                        temphand[i][j+1]+=1;
+                        temphand[i][j+2]+=1;
+                    }
                 }
             }
         }
@@ -236,6 +315,8 @@ public class Agari{
     
     //役を判定する
     public func judgeYaku(){
+        tempyaku=Array<Yaku>()
+        ispinfu=false
         if(judgeYakuman()==true){ //役満の判定
             return
         }else{//標準役の判定
@@ -304,7 +385,7 @@ public class Agari{
     private func yakuhai()->Bool{
         var han:Int=0;
         for temp in mentu{
-            if(temp.pai.suit == 3){
+            if(temp.pai.suit == 3 && temp.judgeKoutu()){
                 if(temp.pai.rank == bahuu){
                     han+=1;
                 }
@@ -330,11 +411,10 @@ public class Agari{
         }
     }
     private func judgeryanmen(mentu:Mentu)->Bool{
-        if(mentu.pai.suit==agarihai.suit){
-            if(mentu.pai.rank==agarihai.rank-2 || mentu.pai.rank==agarihai.rank+2){
+        if (Pai.paiEqual(p1: mentu.pai, p2: agarihai) && mentu.pai.rank != 7) || (Pai.paiEqual(p1: mentu.pai, p2: Pai(rank: agarihai.rank-2, suit: agarihai.suit)) && mentu.pai.rank != 1){
                 return true
             }
-        }
+
         return false
     }
     @discardableResult
@@ -417,10 +497,10 @@ public class Agari{
         if(hand.isMenzen()==false){
             return false
         }
-        for temp in mentu{
-            if(temp.judgeShuntu()){
-                for temp2 in mentu{
-                    if(Pai.paiEqual(p1:temp.pai,p2:temp2.pai)){
+        for i in 0...mentu.count-1{
+            if(mentu[i].judgeShuntu()){
+                for j in 0...mentu.count-1{
+                    if(Pai.paiEqual(p1:mentu[i].pai,p2:mentu[j].pai) && i != j && mentu[j].judgeShuntu()){
                         addYaku(name: "一盃口", han: 1)
                         return true
                     }
@@ -616,7 +696,7 @@ public class Agari{
     private func honitsu()->Bool{
         var jihai=false
         var suit = -1
-        for i in 0...mentu.count{
+        for i in 0...mentu.count-1{
             if(mentu[i].pai.judgekazuhai()){
                 if(suit == -1){
                     suit = mentu[i].pai.suit
@@ -668,10 +748,10 @@ public class Agari{
         var count=0
         var index = -1
         var index2 = -1
-        for i in 0...mentu.count{
+        for i in 0...mentu.count-2{
             if(mentu[i].judgeShuntu() && i != index){
-                for j in i+1...mentu.count{
-                    if(Pai.paiEqual(p1:mentu[i].pai,p2:mentu[j].pai) && j != index2){
+                for j in i+1...mentu.count-1{
+                    if(Pai.paiEqual(p1:mentu[i].pai,p2:mentu[j].pai) && j != index2 && mentu[j].judgeShuntu()){
                         index = i
                         index2 = j
                         count += 1
@@ -730,7 +810,7 @@ public class Agari{
     @discardableResult
     private func chinitsu()->Bool{
         var suit = -1
-        for i in 0...mentu.count{
+        for i in 0...mentu.count-1{
             if(mentu[i].pai.judgekazuhai()){
                 if(suit == -1){
                     suit = mentu[i].pai.suit
@@ -791,7 +871,7 @@ public class Agari{
             if(temp.judgejihai()){
                 count[5+temp.rank]+=1
             }else if(temp.rank==1 || temp.rank==9){
-                count[temp.suit * 2 - 1 + ((temp.rank==9) ? 1 : 0)] += 1
+                count[temp.suit * 2 + ((temp.rank==9) ? 1 : 0)] += 1
             }else{
                 return false
             }

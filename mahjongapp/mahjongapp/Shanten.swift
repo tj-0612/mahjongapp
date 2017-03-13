@@ -6,7 +6,6 @@
 //  Copyright © 2017年 Takashi Tajimi. All rights reserved.
 //
 
-//今後の予定　上がり画面を作る
 import Foundation
 
 public class Shanten{
@@ -61,6 +60,7 @@ public class Shanten{
         shanten=min(normalshanten, titoishanten, kokushishanten)
     }
     //枚数を数える
+
     private func maketemphand()->[[Int]]{
         var temphand:[[Int]]=Array(repeating: Array(repeating:0 ,count: 9), count: 4)
         
@@ -72,18 +72,14 @@ public class Shanten{
         return temphand
 
     }
-    //どこかにバグがある->　多分解消、要検証
+    //5枚目のまちが使えてしまう
+    //スピードが遅いのでなんとかする
     //ターツを切り出す
     private func tatsucut(hand:[[Int]],suit:Int,rank:Int){
         var temphand=hand
         var tempshanten=8
-        var j=0
+        var j=rank
         for i in suit ... 3{
-            if(i==suit && j<rank){
-                j=rank
-            }else{
-                j=0
-            }
             while(j<=8){
                 if(i==suit && j<rank){
                     j=rank
@@ -124,6 +120,7 @@ public class Shanten{
                 }
                 j+=1
             }
+            j=0
         }
         tempshanten=8-mentu*2-tatsu-toitu-naki.count*2;
         if(normalshanten>tempshanten){
@@ -133,13 +130,8 @@ public class Shanten{
     //メンツを切り出す
     private func mentucut(hand:[[Int]],suit:Int,rank:Int){
         var temphand=hand
-        var j=0
+        var j=rank
         for i in suit ... 3{
-            if(i==suit && j<rank){
-                j=rank
-            }else{
-                j=0
-            }
             while(j<=8){
                 //刻子
                 if(temphand[i][j]>=3){
@@ -165,6 +157,7 @@ public class Shanten{
                 }
                 j+=1
             }
+            j=0
         }
         tatsucut(hand:temphand,suit:0,rank:0)
     }
@@ -228,13 +221,14 @@ public class Shanten{
             for j in 0...8{
                 //数牌
                 if(i <= 2){
-                    if(j==1 || j==9){
+                    if(j==0 || j==8){
                         if(temphand[i][j]>=1){
                             //ヤオチュー牌があれば
                             temp -= 1
-                        }else if(temphand[i][j]>=2 && !toitu){
-                            //2枚使いのものがあれば
-                            toitu=true
+                            if(temphand[i][j]>=2 && !toitu){
+                                //2枚使いのものがあれば
+                                toitu=true
+                            }
                         }
                     }
                 }
@@ -253,13 +247,13 @@ public class Shanten{
         kokushishanten=temp
     }
     
-    //多分、５枚目の待ちを含んでしまう
+    
     private func normalMachi(){
         var temphand=maketemphand()
         
-        for i in 0...3{
+        for i in 0...2{
             for j in 0...8{
-                if(temphand[i][j-2>=0 ? j-2 : 0]>=1 || temphand[i][j-1>=0 ? j-1 : 0]>=1 || temphand[i][j]>=1){
+                if((temphand[i][j+1<=8 ? j+1 : 8]>=1 || temphand[i][j-1>=0 ? j-1 : 0]>=1 || temphand[i][j]>=1) && temphand[i][j]<=4){
                     hand.append(Pai(rank: j+1,suit: i))
                     let temp = normalshanten
                     calcNormalShanten()
@@ -270,6 +264,29 @@ public class Shanten{
                     hand.remove(at: hand.count - 1)
                 }
             }
+        }
+        for j in 0...6{
+            if(temphand[3][j]>=1 && temphand[3][j]<=4){
+                hand.append(Pai(rank: j+1,suit: 3))
+                let temp = normalshanten
+                calcNormalShanten()
+                if(normalshanten == -1){
+                    machi.append(Pai(rank: j+1,suit: 3))
+                }
+                normalshanten=temp
+                hand.remove(at: hand.count - 1)
+            }
+        }
+        for m in machi{
+            var s:String
+            switch m.suit{
+            case 0:s="m"
+            case 1:s="p"
+            case 2:s="s"
+            case 3:s="z"
+            default:s="?"
+            }
+            print("machi:" + String(m.rank)+s)
         }
     }
     private func titoiMachi(){

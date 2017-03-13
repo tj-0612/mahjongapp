@@ -282,7 +282,6 @@ class gamescreen: UIViewController {
         for i in 0 ... 135{
             var rand:Int;
             while(true){
-                print("a")
                 rand=(Int)(arc4random_uniform(34));
                 if(painum[rand]>0){
                     painum[rand] -= 1

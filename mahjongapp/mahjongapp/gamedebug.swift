@@ -286,6 +286,9 @@ class gamedebug: UIViewController {
         nextchi=false
         selectchi=false
     }
+    @IBAction func tappedron(_ sender: Any) {
+        play(index:21)
+    }
     
    
     
@@ -417,7 +420,7 @@ class gamedebug: UIViewController {
         //上がりなら（playで上がり、打牌、鳴きの全ての処理を行う）
         if(player[0].play(select: index-1)){
             print("hoge")
-            agari=Agari(id: 0, hand: player[0].getHand(), agarihai: player[0].getHand().getpai()[13-player[0].getHand().getnaki().count*3] , ron: false, bahuu: bahuu, jihuu: 1, junme: junme, chankan: false, rinshan: false)
+            agari=Agari(id: 0, hand: player[0].getHand(), agarihai: player[0].getHand().getpai()[13-player[0].getHand().getnaki().count*3] , ron: index==20 ? false : true, bahuu: bahuu, jihuu: 1, junme: junme, chankan: false, rinshan: false)
             agari.printagari()
             return true
         }

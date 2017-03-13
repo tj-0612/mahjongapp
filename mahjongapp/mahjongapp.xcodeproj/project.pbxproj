@@ -158,6 +158,7 @@
 		85D4AB4D1E516F0300B3C990 /* Mahjong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB4C1E516F0300B3C990 /* Mahjong.swift */; };
 		85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB4E1E5181C600B3C990 /* Hand.swift */; };
 		85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB501E5182B900B3C990 /* Shanten.swift */; };
+		85EDB44B1E7651820051F34A /* playerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDB44A1E7651820051F34A /* playerAI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +336,7 @@
 		85D4AB4C1E516F0300B3C990 /* Mahjong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mahjong.swift; sourceTree = "<group>"; };
 		85D4AB4E1E5181C600B3C990 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		85D4AB501E5182B900B3C990 /* Shanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shanten.swift; sourceTree = "<group>"; };
+		85EDB44A1E7651820051F34A /* playerAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerAI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,6 +658,7 @@
 				85031ACF1E6FD32200E0CC0D /* gamedebug.swift */,
 				856706CF1E51B72900DB2C99 /* Agari.swift */,
 				856706C71E5198F700DB2C99 /* Player.swift */,
+				85EDB44A1E7651820051F34A /* playerAI.swift */,
 				85D4AB501E5182B900B3C990 /* Shanten.swift */,
 				85D4AB4E1E5181C600B3C990 /* Hand.swift */,
 				85D4AB201E516AA100B3C990 /* ViewController.swift */,
@@ -956,6 +959,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85EDB44B1E7651820051F34A /* playerAI.swift in Sources */,
 				85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */,
 				85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */,
 				85031AD01E6FD32200E0CC0D /* gamedebug.swift in Sources */,

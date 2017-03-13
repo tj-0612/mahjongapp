@@ -42,6 +42,8 @@ func ^^ (radix: Int, power: Int) -> Int {
     return Int(pow(Double(radix), Double(power)))
 }
 
+//一応検証したけど七対子系で正しく動くかはまだ怪しい
+
 public class Agari{
     private var bahuu:Int
     private var jihuu:Int
@@ -64,7 +66,7 @@ public class Agari{
     private var ispinfu=false
     
     private var oya=false
-    private var hurikomiplayer = -1
+    private var hurikomiplayer = 1
     
     init(id:Int,hand:Hand,agarihai:Pai,ron:Bool,bahuu:Int,jihuu:Int,junme:Int,chankan:Bool, rinshan:Bool){
         self.id=id
@@ -118,6 +120,10 @@ public class Agari{
             if(basepoint>2000){
                 basepoint=2000
             }
+            if(han==0){
+                basepoint=0
+                print("あがれない")
+            }
         }
         var pay=[0,0,0,0]
         if ron {
@@ -166,6 +172,27 @@ public class Agari{
     private func separateMentu(){
         var temphand = maketemphand()
         mentu = hand.getnaki()          //鳴き部分はメンツにダイレクトに追加
+        if(hand.getForm()==2){
+            addYaku(name: "国士無双", han: 13)
+            return
+        }else if(hand.getForm()==1){
+            for i in 0...3{
+                for j in 0...8{
+                    if(temphand[i][j]==2){
+                        mentu.append(Mentu(kind: Mentukind.TOITU, pai: Pai(rank:j+1,suit:i)))
+                    }
+                }
+            }
+            judgeYaku()
+            yaku=tempyaku
+            for y in yaku{
+                han += y.han
+            }
+            fu=25
+            point=calcpoint()
+            return
+        }
+
         //頭を切り出す
         for i in 0 ... 3{
             for j in 0...8{
@@ -285,7 +312,7 @@ public class Agari{
                 //刻子
                 if(temphand[i][j]>=3){
                     temphand[i][j]-=3;
-                    if(ron==true){
+                    if(ron==true && Pai.paiEqual(p1: agarihai, p2: Pai(rank:j+1,suit:i))){
                         mentu.insert(Mentu(kind: Mentukind.MINKO,pai: Pai(rank: j+1,suit: i)), at: 0)
                     }else{
                         mentu.insert(Mentu(kind: Mentukind.ANKO,pai: Pai(rank: j+1,suit: i)), at: 0)
@@ -749,12 +776,13 @@ public class Agari{
         var index = -1
         var index2 = -1
         for i in 0...mentu.count-2{
-            if(mentu[i].judgeShuntu() && i != index){
+            if(mentu[i].judgeShuntu() && i != index2){
                 for j in i+1...mentu.count-1{
                     if(Pai.paiEqual(p1:mentu[i].pai,p2:mentu[j].pai) && j != index2 && mentu[j].judgeShuntu()){
                         index = i
                         index2 = j
                         count += 1
+                        break;
                     }
                 }
             }
@@ -792,7 +820,7 @@ public class Agari{
         var jihai=false
         for temp in mentu{
             if(temp.pai.judgekazuhai()==true){
-                if !(temp.pai.judgeyaochu() && temp.judgeKoutu()){
+                if !(temp.pai.judgeyaochu() && (temp.judgeKoutu() || temp.kind==Mentukind.TOITU)){
                     return false
                 }
             }else{
@@ -934,42 +962,61 @@ public class Agari{
         return false
     }
     private func tuiso()->Bool{
-        for temp in mentu{
-            if(temp.pai.judgekazuhai()){
-                return false
+        if(hand.getForm()==0){
+            for temp in mentu{
+                if(temp.pai.judgekazuhai()){
+                    return false
+                }
             }
+        }else if(hand.getForm()==1){
+            for p in hand.getpai(){
+                if(p.judgekazuhai()){
+                    return false
+                }
+            }
+        }else{
+            return false
         }
         addYaku(name: "字一色", han: 13)
         return true
     }
     private func chinroto()->Bool{
-        for temp in mentu{
-            if !(temp.pai.judgekazuhai() && temp.pai.judgeyaochu() && (temp.judgeKoutu() || temp.kind==Mentukind.TOITU)){
-                return false
+        if(hand.getForm()==0){
+            for temp in mentu{
+                if !(temp.pai.judgekazuhai() && temp.pai.judgeyaochu() && (temp.judgeKoutu() || temp.kind==Mentukind.TOITU)){
+                    return false
+                }
             }
+            addYaku(name: "清老頭", han: 13)
+            return true
+        }else{
+            return false
         }
-        addYaku(name: "清老頭", han: 13)
-        return true
     }
     private func ryuiso()->Bool{
-        for temp in mentu{
-            if(temp.pai.suit != 2 && !(temp.pai.suit == 3 && temp.pai.rank==6)){
-                return false
-            }
-            else{
-                if(temp.judgeShuntu()){
-                    if(temp.pai.rank != 2){
-                        return false
-                    }
-                }else if(temp.pai.suit==2){
-                    if(temp.pai.rank==1 || temp.pai.rank==5 || temp.pai.rank==7 || temp.pai.rank==9){
-                        return false
+        if(hand.getForm()==0){
+            for temp in mentu{
+                if(temp.pai.suit != 2 && !(temp.pai.suit == 3 && temp.pai.rank==6)){
+                    return false
+                }
+                else{
+                    if(temp.judgeShuntu()){
+                        if(temp.pai.rank != 2){
+                            return false
+                        }
+                    }else if(temp.pai.suit==2){
+                        if(temp.pai.rank==1 || temp.pai.rank==5 || temp.pai.rank==7 || temp.pai.rank==9){
+                            return false
+                        }
                     }
                 }
             }
+            addYaku(name: "緑一色", han: 13)
+            return true
         }
-        addYaku(name: "緑一色", han: 13)
-        return true
+        else{
+            return false
+        }
     }
     private func churenpoto()->Bool{
         if(!hand.isMenzen()==false){

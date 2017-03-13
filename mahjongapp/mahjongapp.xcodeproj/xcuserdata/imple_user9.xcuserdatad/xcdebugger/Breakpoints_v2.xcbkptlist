@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mahjongapp/Agari.swift"
-            timestampString = "510657675.787923"
+            timestampString = "511086462.99969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "calcFu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mahjongapp/Agari.swift"
-            timestampString = "510657675.787923"
+            timestampString = "511086462.99969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "judgeYaku()"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mahjongapp/Agari.swift"
-            timestampString = "510657675.787923"
+            timestampString = "511086462.99969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
             landmarkName = "judgeYaku()"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mahjongapp/Shanten.swift"
-            timestampString = "510645127.438768"
+            timestampString = "511085211.447174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "normalMachi()"
             landmarkType = "7">
          </BreakpointContent>

@@ -46,9 +46,8 @@ public class Player{
         hand.dorichi(junme: junme)
     }
     //打牌、鳴き、上がり、リーチ
-    //返り値は打牌や鳴きなどが行えるかどうか
     public func play(select:Int)->Bool{
-        if(select==19){
+        if(select==19 || select==20){
             if(hand.getshanten().getShanten() == -1){
                 return true
             }

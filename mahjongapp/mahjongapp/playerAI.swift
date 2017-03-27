@@ -22,6 +22,15 @@ struct kikenpai{
 //複数回繰り返して平均得点を推定したのちに自分の得点と照らし合わせる処理がまだ
 //危険牌を管理する処理がまだ
 public class playerAI{
+    private var point = 25000;
+    private var hand = Hand();
+    private var id:Int;
+    init(id:Int){
+        self.id=id
+    }
+    func play(){
+        
+    }
     var nokori = Array(repeating: 4,count:34)
     //nokoriから重み付けされた乱数より牌を得る
     private func getRandomIndex()->Int{
@@ -44,7 +53,7 @@ public class playerAI{
         for _ in 1...100{
             point += estimateRichiHand()
         }
-        point /= point
+        point /= 100
     }
     func estimateRichiHand()->Int{
         var estimatehand = Hand()

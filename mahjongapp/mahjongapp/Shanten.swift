@@ -345,6 +345,10 @@ public class Shanten{
         }
     }
     
+    func calcYukohai(){
+        
+    }
+    
     //待ちの計算(有効牌の計算アルゴリズムを流用予定)
     //テンパイしている時に呼び出される前提のアルゴリズムなのでテンパイしていない時の有効牌は計算できない
     private func setMachi(){

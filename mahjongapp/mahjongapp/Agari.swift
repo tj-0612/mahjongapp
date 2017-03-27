@@ -128,6 +128,7 @@ public class Agari{
         var pay=[0,0,0,0]
         if ron {
             pay[hurikomiplayer] = oya ? basepoint*6 : basepoint*4
+            pay[hurikomiplayer] = pay[hurikomiplayer]%100>0 ? pay[hurikomiplayer]+100-pay[hurikomiplayer]%100 : pay[hurikomiplayer]
         }else{
             let oyaplayer = jihuu==1 ? id : (5-jihuu+id)%4
             if(oyaplayer==id){

@@ -201,6 +201,14 @@ public class Hand{
     public func getrichi()->st_Richi{
         return richi
     }
+    public func isabletoRichi()->Bool{
+        if(getshanten().getShanten()==0){
+            if(isMenzen()){
+                return true
+            }
+        }
+        return false
+    }
     public func getnaki()->[Mentu]{
         return naki
     }
@@ -234,8 +242,10 @@ public class Hand{
         sutehai.append(pai[index]);
         print(String(pai[index].rank) + String(pai[index].suit))
         pai.remove(at: index);
-        sort()
-        setShanten()
+        if(index != 13){
+            sort()
+            setShanten()
+        }
     }
     public func setShanten(){
         shanten=Shanten(hand:pai,naki:naki)

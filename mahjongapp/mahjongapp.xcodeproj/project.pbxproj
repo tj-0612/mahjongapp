@@ -159,6 +159,7 @@
 		85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB4E1E5181C600B3C990 /* Hand.swift */; };
 		85D4AB511E5182B900B3C990 /* Shanten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4AB501E5182B900B3C990 /* Shanten.swift */; };
 		85EDB44B1E7651820051F34A /* playerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDB44A1E7651820051F34A /* playerAI.swift */; };
+		85F54ACD1E88D44300471DC3 /* playerAI0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F54ACC1E88D44300471DC3 /* playerAI0.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +338,7 @@
 		85D4AB4E1E5181C600B3C990 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		85D4AB501E5182B900B3C990 /* Shanten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shanten.swift; sourceTree = "<group>"; };
 		85EDB44A1E7651820051F34A /* playerAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerAI.swift; sourceTree = "<group>"; };
+		85F54ACC1E88D44300471DC3 /* playerAI0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerAI0.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -659,6 +661,7 @@
 				856706CF1E51B72900DB2C99 /* Agari.swift */,
 				856706C71E5198F700DB2C99 /* Player.swift */,
 				85EDB44A1E7651820051F34A /* playerAI.swift */,
+				85F54ACC1E88D44300471DC3 /* playerAI0.swift */,
 				85D4AB501E5182B900B3C990 /* Shanten.swift */,
 				85D4AB4E1E5181C600B3C990 /* Hand.swift */,
 				85D4AB201E516AA100B3C990 /* ViewController.swift */,
@@ -756,6 +759,7 @@
 				TargetAttributes = {
 					85D4AB1A1E516AA100B3C990 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = LW5738NZHC;
 						ProvisioningStyle = Automatic;
 					};
 					85D4AB2E1E516AA100B3C990 = {
@@ -961,6 +965,7 @@
 			files = (
 				85EDB44B1E7651820051F34A /* playerAI.swift in Sources */,
 				85D4AB4F1E5181C600B3C990 /* Hand.swift in Sources */,
+				85F54ACD1E88D44300471DC3 /* playerAI0.swift in Sources */,
 				85D4AB211E516AA100B3C990 /* ViewController.swift in Sources */,
 				85031AD01E6FD32200E0CC0D /* gamedebug.swift in Sources */,
 				85D4AB1F1E516AA100B3C990 /* AppDelegate.swift in Sources */,
@@ -1118,7 +1123,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LW5738NZHC;
 				INFOPLIST_FILE = mahjongapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1130,7 +1137,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LW5738NZHC;
 				INFOPLIST_FILE = mahjongapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.jp.imple.mahjongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
